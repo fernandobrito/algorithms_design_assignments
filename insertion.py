@@ -1,7 +1,7 @@
 # Author: Fernando Brito
 # Python 3,4
 # Usage: python3.4 insertion.py <input>
-# Example: python3.4 insertio.py 3 5 6 1 2 4 3 2
+# Example: python3.4 insertion.py 3 5 6 1 2 4 3 2
 
 import sys
 import common
