@@ -19,37 +19,39 @@ print()
 #  and everyone higher than it, at the end
 # Hoare partition. Two indexes, from start and end
 
-def quicksort(list, low, high):
-    if high > low:
-        # Pick first element is pivot
-        pivot = list[low]
-        left = low
-        right = high
+def quicksort(list, low, high, level=1):
+    if low < high:
+        level+=1
 
-        # INFO
-        print("== Partitionate: " + str(list[low:high+1]))
+        partition_point = partition(list, low, high)
 
-        # While the indexes have not match
-        while left <= right:
-            while list[left] < pivot:
-                left += 1   
+        print("=" * level*3 + " " + str(list[low:partition_point-1]) + " + " + str(list[partition_point]) + " + " + str(list[partition_point+1:]))
 
-            while list[right] > pivot:
-                right -= 1
+        quicksort(list, low, partition_point - 1, level)
+        quicksort(list, partition_point + 1, high, level)
 
-            # Swap elements
-            if left <= right:
-                print("===    Swapping: " + str(list[left]) + " and " + str(list[right]))
-                list[left], list[right] = list[right], list[left]
-                left += 1
-                right -= 1
+def partition(list, low, high):
+    # Pick first element is pivot
+    pivot = list[low]
 
-        print("==         Done: " + str(list[low:high+1]))
-        print()
+    left = low + 1
+    right = high
 
-        # Recursion
-        quicksort(list, low, right)
-        quicksort(list, left, high)
+    while True:
+        while left <= right and list[left] <= pivot:
+            left += 1
+
+        while list[right] >= pivot and right >= left:
+            right -= 1
+
+        if right >= left:
+            list[left], list[right] = list[right], list[left]
+        else:
+            break
+
+    list[low], list[right] = list[right], list[low]
+
+    return right
 
 # Call the function and print output
 quicksort(input, 0, len(input) - 1)
