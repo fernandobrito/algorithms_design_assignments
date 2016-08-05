@@ -21,31 +21,31 @@ print()
 
 # For every number in input
 for i in range(len(input)):
-	# INFO
-	print("= Searching smallest on: " + str(input[i:]))
+    # INFO
+    print("= Searching smallest on: " + str(input[i:]))
 
-	# Assume number on iis the smallest
-	smallest = input[i]
-	smallestIndex = i
+    # Assume number on iis the smallest
+    smallest = input[i]
+    smallestIndex = i
 
-	# Iterate over what is left from the array to find the real smallest
-	for j in range(i, len(input)):
+    # Iterate over what is left from the array to find the real smallest
+    for j in range(i, len(input)):
 
-		# If this new element is smaller, update our smallest
-		if input[j] < smallest:
-			smallest = input[j]
-			smallestIndex = j
+        # If this new element is smaller, update our smallest
+        if input[j] < smallest:
+            smallest = input[j]
+            smallestIndex = j
 
-	# INFO
-	print("== Smallest found: " + str(smallest) + " on index " + str(smallestIndex))
+    # INFO
+    print("== Smallest found: " + str(smallest) + " on index " + str(smallestIndex))
 
-	# Swap i and j
-	input[smallestIndex] = input[i]
-	input[i] = smallest
+    # Swap i and j
+    input[smallestIndex] = input[i]
+    input[i] = smallest
 
-	# INFO
-	print("== New array, after swapping: " + str(input))
-	print()
+    # INFO
+    print("== New array, after swapping: " + str(input))
+    print()
 
 # Print result
 print(input)

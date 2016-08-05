@@ -23,28 +23,28 @@ print()
 # For every number on input (expect for the first one, since array with 1 element
 # is trivially sorted):
 for i in range(1, len(input)):
-	# Auxiliary index to iterate from position i to beginning of array
-	j = i - 1
+    # Auxiliary index to iterate from position i to beginning of array
+    j = i - 1
 
-	# Store current value
-	current_value = input[i]
+    # Store current value
+    current_value = input[i]
 
-	# INFO
-	print("== Assuming " + str(input[0:i]) + ' is already sorted')
-	print("== Looking where to put element: " + str(current_value))
+    # INFO
+    print("== Assuming " + str(input[0:i]) + ' is already sorted')
+    print("== Looking where to put element: " + str(current_value))
 
-	# Starting from i, we go backwards in the array (which is already sorted)
-	# looking where to insert input[i]. While we do this, we shift elements
-	# to the right. 
-	while (j >= 0 and input[j] > current_value):
-		input[j+1] = input[j]
-		j -= 1
+    # Starting from i, we go backwards in the array (which is already sorted)
+    # looking where to insert input[i]. While we do this, we shift elements
+    # to the right. 
+    while (j >= 0 and input[j] > current_value):
+        input[j+1] = input[j]
+        j -= 1
 
-	# Not that we found where to put the current value, we do it
-	input[j+1] = current_value
+    # Not that we found where to put the current value, we do it
+    input[j+1] = current_value
 
-	print("== New array: " + str(input[0:i+1]))
-	print()
+    print("== New array: " + str(input[0:i+1]))
+    print()
 
 # Print result
 print(input)
