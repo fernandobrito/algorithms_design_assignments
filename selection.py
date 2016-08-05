@@ -24,7 +24,7 @@ for i in range(len(input)):
     # INFO
     print("= Searching smallest on: " + str(input[i:]))
 
-    # Assume number on iis the smallest
+    # Assume number on i is the smallest
     smallest = input[i]
     smallestIndex = i
 
