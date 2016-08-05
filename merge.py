@@ -1,7 +1,7 @@
 # Author: Fernando Brito
 # Python 3,4
-# Usage: python3.4 selection.py <input>
-# Example: python3.4 selection.py 3 5 6 1 2 4 3 2
+# Usage: python3.4 merge.py <input>
+# Example: python3.4 merge.py 3 5 6 1 2 4 3 2
 
 import sys
 import common
