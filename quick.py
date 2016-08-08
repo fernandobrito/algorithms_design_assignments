@@ -1,7 +1,8 @@
 # Author: Fernando Brito
 # Python 3,4
 # Usage: python3.4 quick.py <input>
-# Example: python3.4 quick.py 3 5 6 1 2 4 3 2
+# Example: python3.4 quick.py
+# Example 2: python3.4 quick.py 3 5 6 1 2 4 3 2
 
 import sys
 import common
@@ -9,9 +10,9 @@ import common
 print("== QUICK SORT ==")
 
 # Read input
-input = common.read_input(sys.argv)
+array = common.read_input(sys.argv)
 
-print("Input: " + str(input))
+print("Input: " + str(array))
 print()
 
 # Quick sort:
@@ -20,22 +21,22 @@ print()
 # Hoare partition. Two indexes, from start and end
 
 # Recursive, main call
-def quicksort(list, low, high, level=1):
+def quicksort(array, low, high, level=1):
     if low < high:
         level+=1
 
         # Find partition point
-        partition_point = partition(list, low, high)
+        partition_point = partition(array, low, high)
 
-        print("=" * level*3 + " " + str(list[low:partition_point-1]) + " + " + str(list[partition_point]) + " + " + str(list[partition_point+1:]))
+        print("=" * level*3 + " " + str(array[low:partition_point-1]) + " + " + str(array[partition_point]) + " + " + str(array[partition_point+1:]))
 
         # Recursive call, splitting array
-        quicksort(list, low, partition_point - 1, level)
-        quicksort(list, partition_point + 1, high, level)
+        quicksort(array, low, partition_point - 1, level)
+        quicksort(array, partition_point + 1, high, level)
 
-def partition(list, low, high):
+def partition(array, low, high):
     # Pick first element is pivot
-    pivot = list[low]
+    pivot = array[low]
 
     # Initialize pointers
     left = low + 1
@@ -45,23 +46,23 @@ def partition(list, low, high):
     # swapping elements that are greater than the pivot to the right 
     # and smaller to the left
     while True:
-        while left <= right and list[left] <= pivot:
+        while left <= right and array[left] <= pivot:
             left += 1
 
-        while list[right] >= pivot and right >= left:
+        while array[right] >= pivot and right >= left:
             right -= 1
 
         if right >= left:
-            list[left], list[right] = list[right], list[left]
+            array[left], array[right] = array[right], array[left]
         else:
             break
 
     # Swap pivot with right pointer
-    list[low], list[right] = list[right], list[low]
+    array[low], array[right] = array[right], array[low]
 
     return right
 
 # Call the function and print output
-quicksort(input, 0, len(input) - 1)
+quicksort(array, 0, len(array) - 1)
 print()
-print(input)
+print(array)

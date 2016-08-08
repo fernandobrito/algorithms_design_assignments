@@ -1,7 +1,8 @@
 # Author: Fernando Brito
 # Python 3,4
 # Usage: python3.4 selection.py <input>
-# Example: python3.4 selection.py 3 5 6 1 2 4 3 2
+# Example: python3.4 selection.py
+# Example 2: python3.4 selection.py 3 5 6 1 2 4 3 2
 
 import sys
 import common
@@ -9,9 +10,9 @@ import common
 print("== SELECTION SORT ==")
 
 # Read input
-input = common.read_input(sys.argv)
+array = common.read_input(sys.argv)
 
-print("Input: " + str(input))
+print("Input: " + str(array))
 print()
 
 
@@ -20,32 +21,32 @@ print()
 # #2 Find smallest value on what is left, put on index 1...
 
 # For every number in input
-for i in range(len(input)):
+for i in range(len(array)):
     # INFO
-    print("= Searching smallest on: " + str(input[i:]))
+    print("= Searching smallest on: " + str(array[i:]))
 
     # Assume number on i is the smallest
-    smallest = input[i]
+    smallest = array[i]
     smallestIndex = i
 
     # Iterate over what is left from the array to find the real smallest
-    for j in range(i, len(input)):
+    for j in range(i, len(array)):
 
         # If this new element is smaller, update our smallest
-        if input[j] < smallest:
-            smallest = input[j]
+        if array[j] < smallest:
+            smallest = array[j]
             smallestIndex = j
 
     # INFO
     print("== Smallest found: " + str(smallest) + " on index " + str(smallestIndex))
 
     # Swap i and j
-    input[smallestIndex] = input[i]
-    input[i] = smallest
+    array[smallestIndex] = array[i]
+    array[i] = smallest
 
     # INFO
-    print("== New array, after swapping: " + str(input))
+    print("== New array, after swapping: " + str(array))
     print()
 
 # Print result
-print(input)
+print(array)
