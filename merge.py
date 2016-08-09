@@ -1,25 +1,19 @@
 # Author: Fernando Brito
 # Python 3,4
-# Usage: python3.4 merge.py <input>
-# Example: python3.4 merge.py
-# Example 2: python3.4 merge.py 3 5 6 1 2 4 3 2
+# Usage: python3.4 merge.py
 
-import sys
+DEBUG = False
+
 import common
 
-print("== MERGE SORT ==")
-
 # Read input
-array = common.read_input(sys.argv)
-
-print("Input: " + str(array))
-print()
+array = common.read_input()
 
 # Merge sort:
-# "1: Divide the unsorted list into n sublists, 
+# "1: Divide the unsorted list into n sublists,
 #     each containing 1 element (a list of 1 element is considered sorted).
-# 
-# 2: Repeatedly merge sublists to produce new sorted sublists until there 
+#
+# 2: Repeatedly merge sublists to produce new sorted sublists until there
 #    is only 1 sublist remaining. This will be the sorted list." (Wikipedia)
 
 # Level is not part of the algorithm. It is being used just to print the call stack
@@ -38,7 +32,7 @@ def sort(array, level):
     right = array[middle:]
 
     # INFO
-    print("/" * level*3 + " Split: " + str(array))
+    DEBUG and print("/" * level*3 + " Split: " + str(array))
 
     # Call the recursion
     # Sort each subarray and merge the results
@@ -50,7 +44,7 @@ def merge(left, right, level):
     sorted = []
 
     # INFO
-    print("+" * level*3 + " Merge: " + str(left) + " + " + str(right))
+    DEBUG and print("+" * level*3 + " Merge: " + str(left) + " + " + str(right))
 
     # We take first element from left and from right side
     # Then we see which one is smaller and we put it on sorted
@@ -71,5 +65,6 @@ def merge(left, right, level):
 
 # Call the function and print output
 output = sort(array, 0)
-print()
-print(output)
+
+# Print result
+common.print_output(output)

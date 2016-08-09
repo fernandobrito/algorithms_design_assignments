@@ -1,19 +1,13 @@
 # Author: Fernando Brito
 # Python 3,4
-# Usage: python3.4 quick.py <input>
-# Example: python3.4 quick.py
-# Example 2: python3.4 quick.py 3 5 6 1 2 4 3 2
+# Usage: python3.4 quick.py
 
-import sys
+DEBUG = False
+
 import common
 
-print("== QUICK SORT ==")
-
 # Read input
-array = common.read_input(sys.argv)
-
-print("Input: " + str(array))
-print()
+array = common.read_input()
 
 # Quick sort:
 # Choose pivot, put everyone lower than it on beginning of array
@@ -28,7 +22,7 @@ def quicksort(array, low, high, level=1):
         # Find partition point
         partition_point = partition(array, low, high)
 
-        print("=" * level*3 + " " + str(array[low:partition_point-1]) + " + " + str(array[partition_point]) + " + " + str(array[partition_point+1:]))
+        DEBUG and print("=" * level*3 + " " + str(array[low:partition_point-1]) + " + " + str(array[partition_point]) + " + " + str(array[partition_point+1:]))
 
         # Recursive call, splitting array
         quicksort(array, low, partition_point - 1, level)
@@ -64,5 +58,6 @@ def partition(array, low, high):
 
 # Call the function and print output
 quicksort(array, 0, len(array) - 1)
-print()
-print(array)
+
+# Print result
+common.print_output(array)

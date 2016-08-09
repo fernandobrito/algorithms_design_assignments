@@ -1,20 +1,12 @@
 # Author: Fernando Brito
 # Based on: http://www.codecodex.com/wiki/Heapsort#Python
 # Python 3,4
-# Usage: python3.4 heap.py <input>
-# Example: python3.4 heap.py
-# Example 2: python3.4 heap.py 3 5 6 1 2 4 3 2
+# Usage: python3.4 heap.py
 
-import sys
 import common
 
-print("== SELECTION SORT ==")
-
 # Read input
-array = common.read_input(sys.argv)
-
-print("Input: " + str(array))
-print()
+array = common.read_input()
 
 # Maintain the heap invariant: parents must be greater than children
 # We go down the heap (represented on an array)
@@ -62,8 +54,6 @@ def heapsort(array):
     end -= 1
 
 
-
 # Call the function and print output
 heapsort(array)
-print()
-print(array)
+common.print_output(array)

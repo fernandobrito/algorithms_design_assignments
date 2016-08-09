@@ -1,19 +1,13 @@
 # Author: Fernando Brito
 # Python 3,4
-# Usage: python3.4 insertion.py <input>
-# Example: python3.4 insertion.py
-# Example 2: python3.4 insertion.py 3 5 6 1 2 4 3 2
+# Usage: python3.4 insertion.py
 
-import sys
+DEBUG = False
+
 import common
 
-print("== INSERTION SORT ==")
-
 # Read input
-array = common.read_input(sys.argv)
-
-print("Input: " + str(array))
-print()
+array = common.read_input()
 
 # Insertion sort:
 # "Insertion sort iterates, consuming one input element each repetition, and growing a 
@@ -31,8 +25,8 @@ for i in range(1, len(array)):
     current_value = array[i]
 
     # INFO
-    print("== Assuming " + str(array[0:i]) + ' is already sorted')
-    print("== Looking where to put element: " + str(current_value))
+    DEBUG and print("== Assuming " + str(array[0:i]) + ' is already sorted')
+    DEBUG and print("== Looking where to put element: " + str(current_value))
 
     # Starting from i, we go backwards in the array (which is already sorted)
     # looking where to insert input[i]. While we do this, we shift elements
@@ -44,8 +38,8 @@ for i in range(1, len(array)):
     # Not that we found where to put the current value, we do it
     array[j+1] = current_value
 
-    print("== New array: " + str(array[0:i+1]))
-    print()
+    DEBUG and print("== New array: " + str(array[0:i+1]))
+    DEBUG and print()
 
 # Print result
-print(array)
+common.print_output(array)
