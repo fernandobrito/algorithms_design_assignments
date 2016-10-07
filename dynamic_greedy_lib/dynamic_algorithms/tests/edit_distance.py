@@ -23,3 +23,6 @@ runner.expect_equal(["aaaaaaab", "aaaaaaaa"], 1)
 # Substitution
 runner.expect_equal(["aaaaaaa", "aaaaaax"], 1)
 runner.expect_equal(["axaaaaa", "aaaaaaa"], 1)
+
+# Big strings
+runner.expect_equal(["lashdbgnkmbasdkugdmnbmansbdkht", "gmnasbdng12jhb3kjgskdbfhkgsdfkhbf"], 24)
