@@ -1,5 +1,5 @@
 from utils.tests import TestRunner
-from dynamic_algorithms import edit_distance
+from dynamic import edit_distance
 
 runner = TestRunner(edit_distance.solve)
 

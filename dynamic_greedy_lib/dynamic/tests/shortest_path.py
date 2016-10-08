@@ -1,5 +1,5 @@
 from utils.tests import TestRunner
-from dynamic_algorithms import shortest_path
+from dynamic import shortest_path
 
 runner = TestRunner(shortest_path.solve)
 
