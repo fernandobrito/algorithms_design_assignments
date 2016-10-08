@@ -28,14 +28,15 @@ Check `dynamic/edit_distance.py` for comment header template.
 | Edit Levenshtein Distance     |    Distância de edição    	| edit_distance.py 	| Fernando  |
 
 ## Greedy Programming
-|   Algorithm   	|     Algorithm (pt-BR)                            	|       File    |  Author  	|
-|:-------------:	|:----------------------------------------------:	|:-------------:|:--------:	|
-|   	            | Árvore geradora mínima (Algoritmo de Kruskal) 	|   	        | Jorismar 	|
-|   	            | Árvore geradora mínima (Algoritmo de Prim)    	| - 	        | -        	|
-|   	            | Compressão de dados (Código de Huffman)       	|   	        | Jaelson  	|
-|   	            | Seleção de atividades                         	|   	        | Jaelson  	|
-|   	            | Mochila fracionária                           	|   	        | Jorismar 	|
-|   	            | Coloração de grafos                           	|   	        | Fernando 	|
+|   Algorithm   	            |     Algorithm (pt-BR)                            	|       File            |  Author  	|
+|:-------------:	            |:----------------------------------------------:	|:-------------:        |:--------:	|
+| Dijkstra’s Shortest Path      | Caminho mais curto (Algoritmo de Dijkstra) 	    | shortest_path.py      | Fernando 	|
+|   	                        | Árvore geradora mínima (Algoritmo de Kruskal) 	|   	                | Jorismar 	|
+|   	                        | Árvore geradora mínima (Algoritmo de Prim)    	| - 	                | -        	|
+|   	                        | Compressão de dados (Código de Huffman)       	|   	                | Jaelson  	|
+|   	                        | Seleção de atividades                         	|   	                | Jaelson  	|
+|   	                        | Mochila fracionária                           	|   	                | Jorismar 	|
+|   	                        | Coloração de grafos                           	|   	                | Fernando 	|
 
 ## Credits
 
