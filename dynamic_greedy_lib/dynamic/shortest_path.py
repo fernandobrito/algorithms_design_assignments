@@ -15,8 +15,8 @@ Resources:
 
 def solve(input):
     """
-    Input given as adjacency matrix. Use None to mark absence of edges.
-    Output a matrix with shortest path between all vertices.
+    :param input: adjacency matrix. Use None to mark absence of edges
+    :return: matrix with shortest path between all vertices
     """
 
     # Create a copy of input
