@@ -1,15 +1,17 @@
 """
-Complexity:
+Complexity: O(m * n)
+    O(1) in all positions on table of size m * n
 
 Author: Fernando Brito (11111309)
 
 Resources:
-    -
+    - http://www.geeksforgeeks.org/dynamic-programming-set-5-edit-distance/
 """
 
 def solve(input):
     """
     Input should contain two strings
+    Output edit distance as an integer
     """
     return _edit_distance(input[0], input[1], len(input[0]), len(input[1]))
 

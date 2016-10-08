@@ -1,6 +1,8 @@
 import copy
 
 """
+Find shortest distance between all pairs of vertices in a directed graph.
+
 Complexity: O(n^3)
     Iterate n times over all cells (n^2)
 
@@ -14,6 +16,7 @@ Resources:
 def solve(input):
     """
     Input given as adjacency matrix. Use None to mark absence of edges.
+    Output a matrix with shortest path between all vertices.
     """
 
     # Create a copy of input
