@@ -1,4 +1,11 @@
-# Author: Fernando Brito (11111309)
+"""
+Complexity:
+
+Author: Fernando Brito (11111309)
+
+Resources:
+    -
+"""
 
 def solve(input):
     """

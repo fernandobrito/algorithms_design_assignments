@@ -14,18 +14,18 @@ Check `dynamic_algorithms/edit_distance.py` for comment header template.
 ## Authors
 
 ### Dynamic Programming
-|   Algorithm   	|     Algorithm (pt-BR)     	|       File       	|  Author  	|
-|:-------------:	|:-------------------------:	|:----------------:	|:--------:	|
-|               	|    Triângulo de Pascal    	|                  	|  Jaelson 	|
-|               	|      Troco em moedas      	|                  	| Fernando 	|
-|               	|      Mochila binária      	|                  	|  Jaelson 	|
-|               	|   Empilhamento de caixas  	|         -        	|     -    	|
-|               	|     Caminho mais curto    	|                  	| Fernando 	|
-|               	|     Quebra de palavras    	|                  	|  Jaelson 	|
-|               	|  Maior subsequência comum 	|                  	| Jorismar 	|
-|               	|    Soma de subconjunto    	|                  	| Jorismar 	|
-|               	| Multiplicação de matrizes 	|                  	| Jorismar 	|
-| Edit Distance 	|    Distância de edição    	| edit_distance.py 	| Fernando  |
+|   Algorithm   	            |     Algorithm (pt-BR)     	|       File       	|  Author  	|
+|:-------------:	            |:-------------------------:	|:----------------:	|:--------:	|
+|               	            |    Triângulo de Pascal    	|                  	|  Jaelson 	|
+|               	            |      Troco em moedas      	|                  	| Fernando 	|
+|               	            |      Mochila binária      	|                  	|  Jaelson 	|
+|               	            |   Empilhamento de caixas  	|         -        	|     -    	|
+| Floyd Warshall All Pairs Shortest Path | Caminho mais curto   | shortest_path.py 	| Fernando 	|
+|               	            |     Quebra de palavras    	|                  	|  Jaelson 	|
+|               	            |  Maior subsequência comum 	|                  	| Jorismar 	|
+|               	            |    Soma de subconjunto    	|                  	| Jorismar 	|
+|               	            | Multiplicação de matrizes 	|                  	| Jorismar 	|
+| Edit Levenshtein Distance     |    Distância de edição    	| edit_distance.py 	| Fernando  |
 
 ## Greedy Programming
 |   Algorithm   	|     Algorithm (pt-BR)                            	|       File    |  Author  	|
@@ -36,3 +36,7 @@ Check `dynamic_algorithms/edit_distance.py` for comment header template.
 |   	            | Seleção de atividades                         	|   	        | Jaelson  	|
 |   	            | Mochila fracionária                           	|   	        | Jorismar 	|
 |   	            | Coloração de grafos                           	|   	        | Fernando 	|
+
+## Credits
+
+Most of the implementations are inspired by http://www.geeksforgeeks.org/.
