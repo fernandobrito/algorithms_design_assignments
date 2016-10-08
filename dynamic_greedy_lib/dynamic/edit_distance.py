@@ -1,6 +1,9 @@
+from utils import table as table_utils
+
 """
 Complexity: O(m * n)
-    O(1) in all positions on table of size m * n
+    O(1) in all positions on table of size m * n, where m and n
+    are lengths of strings.
 
 Author: Fernando Brito (11111309)
 
@@ -23,26 +26,11 @@ def _edit_distance(str1, str2, m, n):
 
     # Initialize table to store solution of sub problems
     # with length1 + 1 rows and length2 + 1 columns
-    table = _initialize_table(m, n)
+    table = table_utils.initialize(m+1, n+1)
 
     _fill_table(table, str1, str2, m, n)
 
     return table[m][n]
-
-
-def _initialize_table(m, n):
-    table = []
-
-    for row in range(m + 1):
-        # Create empty row
-        table.append([])
-
-        # Create column entries
-        for column in range(n + 1):
-            table[row].append(None)
-
-    return table
-
 
 
 def _fill_table(table, str1, str2, m, n):
