@@ -21,7 +21,7 @@ def solve(input):
     :param input: array with first element: number of vertices
                   second element: array of arrays with 2 elements, representing edges
                                   ex: [[0, 2], [0, 3], ...]
-    :return:
+    :return: array where i-th element is number of color of i-th vertex
     """
 
     # Store number of vertices
