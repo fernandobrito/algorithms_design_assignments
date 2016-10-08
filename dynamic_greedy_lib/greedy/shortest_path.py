@@ -3,7 +3,10 @@ from utils import table as table_utils
 """
 Given a graph and a source vertex in graph, find shortest paths from source to all vertices in the given graph.
 
-Complexity:
+Complexity: O(V^2)
+    Where V is the number of vertices.
+    We spend O(V) 2 times to initialize arrays and then we have
+    two nested loops that iterate over all vertices
 
 Author: Fernando Brito (11111309)
 
