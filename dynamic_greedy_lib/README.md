@@ -16,9 +16,9 @@ Check `dynamic/edit_distance.py` for comment header template.
 ### Dynamic Programming
 |   Algorithm   	            |     Algorithm (pt-BR)     	|       File       	|  Author  	|
 |:-------------:	            |:-------------------------:	|:----------------:	|:--------:	|
-|               	            |    Triângulo de Pascal    	|                  	|  Jaelson 	|
+| Binomial Coefficient          |    Triângulo de Pascal    	| binomial_coefficient.py |  Jaelson 	|
 | Coin Change                   |      Troco em moedas      	| coin_change.py   	| Fernando 	|
-|               	            |      Mochila binária      	|                  	|  Jaelson 	|
+| Knapsack        	            |      Mochila binária      	| knapsack.py       |  Jaelson 	|
 |               	            |   Empilhamento de caixas  	|         -        	|     -    	|
 | Floyd Warshall All Pairs Shortest Path | Caminho mais curto   | shortest_path.py 	| Fernando 	|
 |               	            |     Quebra de palavras    	|                  	|  Jaelson 	|
