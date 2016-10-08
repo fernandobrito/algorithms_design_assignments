@@ -17,7 +17,7 @@ Check `dynamic/edit_distance.py` for comment header template.
 |   Algorithm   	            |     Algorithm (pt-BR)     	|       File       	|  Author  	|
 |:-------------:	            |:-------------------------:	|:----------------:	|:--------:	|
 |               	            |    Triângulo de Pascal    	|                  	|  Jaelson 	|
-|               	            |      Troco em moedas      	|                  	| Fernando 	|
+| Coin Change                   |      Troco em moedas      	| coin_change.py   	| Fernando 	|
 |               	            |      Mochila binária      	|                  	|  Jaelson 	|
 |               	            |   Empilhamento de caixas  	|         -        	|     -    	|
 | Floyd Warshall All Pairs Shortest Path | Caminho mais curto   | shortest_path.py 	| Fernando 	|
