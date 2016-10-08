@@ -36,8 +36,8 @@ Check `dynamic/edit_distance.py` for comment header template.
 |   	                        | Compressão de dados (Código de Huffman)       	|   	                | Jaelson  	|
 |   	                        | Seleção de atividades                         	|   	                | Jaelson  	|
 |   	                        | Mochila fracionária                           	|   	                | Jorismar 	|
-|   	                        | Coloração de grafos                           	|   	                | Fernando 	|
+| Graph Coloring                | Coloração de grafos                           	| graph_coloring.py     | Fernando 	|
 
 ## Credits
 
-Most of the implementations are inspired by http://www.geeksforgeeks.org/.
+Most of the implementations are inspired on explanations and solutions from http://www.geeksforgeeks.org/.
