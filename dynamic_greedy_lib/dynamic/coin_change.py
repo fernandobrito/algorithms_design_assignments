@@ -66,5 +66,4 @@ def _coin_change(total_change, coins):
             table[change][coin] = without_this_coin + with_this_coin
 
     # Return last element
-    print(table)
     return table[total_change][len(coins)-1]
