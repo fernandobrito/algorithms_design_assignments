@@ -26,24 +26,5 @@ def _longest_common_subsequence(seq, sub):
                 r_val = table[r_bk][c]
                 c_val = table[r][c_bk]
                 table[r][c] = r_val if r_val > c_val else c_val
-            
-    r = seq_len - 1
-    c = sub_len - 1
-    lcs = ''
 
-    while r > 0 and c > 0:
-        r_bk = r - 1
-        c_bk = c - 1
-
-        if seq[r_bk] == sub[c_bk]:
-            lcs += seq[r_bk]
-            r = r_bk
-            c = c_bk
-        elif table[r_bk][c] > table[r][c_bk]:
-            r = r_bk
-        else:
-            c = c_bk
-
-    lcs = lcs[::-1]
-
-    return len(lcs)
+    return table[seq_len - 1][sub_len - 1]
