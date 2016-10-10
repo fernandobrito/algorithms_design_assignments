@@ -1,3 +1,5 @@
+from utils import table as table_utils
+
 """
     Author: Jaelson Carvalho - 11427671
     Python 3.4.3
@@ -16,6 +18,7 @@
     Application:
 """
 
+
 def solve(input):
     """
     Input : should contain a values list, a weight list and the total capacity.
@@ -23,28 +26,28 @@ def solve(input):
     """
     return _knapsack(input[0], input[1], input[2])
 
+
 def _knapsack(W, wt, val):
-    """
-    Set numbers of interactions.
-    """
+
+    # Get numbers of rows on the table
     n = len(val)
 
-    """
-    Create a table to store values that are used to solve shortest problems.
-    """
-    column = [0] * (W + 1)
-    k = list(column)
+    # Create a table to store values that are used to solve shortest problems
+    k = table_utils.initialize(n + 1, W + 1, 0)
 
-    for i in range(1, n):
-        cache = list(k)
-        k = list(column)
+    # Iterate over all rows
+    for i in range(n + 1):
 
+        # Iterate over all columns
         j = 1
         while j < (W + 1):
-            if wt[i] > j:
-                k[j] = cache[j]
+            if i == 0 or j == 0:
+                k[i][j] = 0
+            elif wt[i - 1] <= j:
+                k[i][j] = max(val[i - 1] + k[i - 1][j - wt[i - 1]], k[i - 1][j])
             else:
-                k[j] = max(cache[j], val[i] + cache[j - wt[i]])
+                k[i][j] = k[i - 1][j]
+
             j += 1
 
-    return k[W]
+    return k[n][W]
