@@ -33,7 +33,7 @@ Check `dynamic/edit_distance.py` for comment header template.
 | Dijkstra’s Shortest Path      | Caminho mais curto (Algoritmo de Dijkstra) 	    | shortest_path.py      | Fernando 	|
 |   	                        | Árvore geradora mínima (Algoritmo de Kruskal) 	|   	                | Jorismar 	|
 |   	                        | Árvore geradora mínima (Algoritmo de Prim)    	| - 	                | -        	|
-|   	                        | Compressão de dados (Código de Huffman)       	|   	                | Jaelson  	|
+| Huffman Coding               | Compressão de dados (Código de Huffman)       	| huffman_coding.py     | Jaelson  	|
 |   	                        | Seleção de atividades                         	|   	                | Jaelson  	|
 |   	                        | Mochila fracionária                           	|   	                | Jorismar 	|
 | Graph Coloring                | Coloração de grafos                           	| graph_coloring.py     | Fernando 	|
