@@ -46,7 +46,7 @@ def _traverse_huffman_tree(root):
     codes = []
 
     while current_level:
-        next_level = list()
+        next_level = []
 
         for node in current_level:
 
