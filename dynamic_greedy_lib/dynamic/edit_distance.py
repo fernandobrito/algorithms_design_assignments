@@ -1,6 +1,15 @@
 from utils import table as table_utils
 
 """
+Given two strings str1 and str2 and 3 operations (insert, remove and replace)
+that can performed on str1, find minimum number of edits (operations)
+required to convert ‘str1′ into ‘str2′. Also known as Levenshtein distance.
+
+Applications:
+    "Wide range of applications, for instance, spell checkers, correction
+     systems for optical character recognition, and software to assist
+    natural language translation based on translation memory." [Wikipedia]
+
 Complexity: O(m * n)
     O(1) in all positions on table of size m * n, where m and n
     are lengths of strings.

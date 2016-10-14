@@ -26,3 +26,9 @@ runner.expect_equal(["axaaaaa", "aaaaaaa"], 1)
 
 # Big strings
 runner.expect_equal(["lashdbgnkmbasdkugdmnbmansbdkht", "gmnasbdng12jhb3kjgskdbfhkgsdfkhbf"], 24)
+runner.expect_equal(["gaskjdghihg123basduiy123mkbnuaosyfmn12b3iuasgdmnb134ui",
+                     "kjbasdk123ouasdmnb123iuasdmnb123uiasdnkb123iguasd"], 34)
+runner.expect_equal(["gaskjdghihg123basduiy123mkbnuaosyfmn12b3iuasgdmnb134ui",
+                     "gaskjdghihg123basduiy123mkbnuaosyfmn12b3iuasgdmnb134ui"], 0)
+runner.expect_equal(["asd",
+                     "gaskjdghihg123basduiy123mkbnuaosyfmn12b3iuasgdmnb134ui"], 51)
