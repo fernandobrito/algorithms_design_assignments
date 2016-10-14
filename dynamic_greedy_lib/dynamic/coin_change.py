@@ -2,7 +2,8 @@ from utils import table as table_utils
 
 """
 Given a set of coins and a change value, find how many different ways
-there are to provide this change. The order of coins does not matter.
+there are to provide this change. The order of coins does not matter in
+the final result.
 
 Complexity: O(m * n)
     O(1) in all positions on table of size m * n, where m is number
@@ -28,7 +29,7 @@ def solve(input):
 
 def _coin_change(total_change, coins):
     # Initialize table. Rows for change and columns for index of which
-    # coins should be included
+    # coins should be included (cumulative effect, including previous set)
 
     #       {c1}, {c1,c2}, {c1, c2, c3}
     #    0
