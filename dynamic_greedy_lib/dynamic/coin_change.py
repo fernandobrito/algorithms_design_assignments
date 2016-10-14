@@ -5,6 +5,14 @@ Given a set of coins and a change value, find how many different ways
 there are to provide this change. The order of coins does not matter in
 the final result.
 
+Applications:
+    "It is a knapsack type problem. Knapsack problems appear in real-world
+    decision-making processes in a wide variety of fields, such as finding
+    the least wasteful way to cut raw materials, selection of
+    investments and portfolios, selection of assets for asset-backed
+    securitization, and generating keys for the Merkle–Hellman and
+    other knapsack cryptosystems." [Wikipedia]
+
 Complexity: O(m * n)
     O(1) in all positions on table of size m * n, where m is number
     of different possible coins on input and n is change size.

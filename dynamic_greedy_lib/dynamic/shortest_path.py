@@ -1,10 +1,18 @@
 import copy
 
 """
-Find shortest distance between all pairs of vertices in a directed graph.
+Find shortest distance between all pairs of vertices in a directed graph
+using Floyd Warshall algorithm.
+
+Applications:
+    "The Floyd–Warshall algorithm can be used to solve the following problems,
+    among others: Transitive closure of directed graphs, Finding a regular
+    expression denoting the regular language, Inversion of real matrices,
+    Optimal routing, Computing canonical form of difference bound matrices (DBMs)"
+    [Wikipedia]
 
 Complexity: O(n^3)
-    Iterate n times over all cells (n^2)
+    Iterate n times over all cells (n^2). n * n^2 = n^3
 
 Author: Fernando Brito (11111309)
 
@@ -34,7 +42,7 @@ def solve(input):
         # Pick all vertices as source one by one
         for source in range(number_vertices):
 
-            # Pick all vertices as detination
+            # Pick all vertices as destination
             for destination in range(number_vertices):
 
                 # If going from source to destination, considering
