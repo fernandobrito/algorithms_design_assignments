@@ -7,6 +7,17 @@ to use minimum colors, but it guarantees an upper bound on the number of colors.
 The basic algorithm never uses more than d+1 colors where d is the maximum
 degree of a vertex in the given graph."
 
+Applications:
+    "The problem of coloring a graph arises in many practical areas such
+    as pattern matching, sports scheduling, designing seating plans, exam
+    timetabling, the scheduling of taxis, and solving Sudoku puzzles.
+
+    Vertex coloring models to a number of scheduling problems. For example,
+    when assigning aircraft to flights, the resulting conflict graph is an
+    interval graph, so the coloring problem can be solved efficiently. In
+    bandwidth allocation to radio stations, the resulting conflict graph
+    is a unit disk graph, so the coloring problem is 3-approximable." [Wikipedia]
+
 Complexity: O(V^2 + E)
     Where V is the number of vertices and E the number of edges
 
@@ -18,7 +29,7 @@ Resources:
 
 def solve(input):
     """
-    :param input: array with first element: number of vertices
+    :param input: array with first element: number of vertices (should be at least 1)
                   second element: array of arrays with 2 elements, representing edges
                                   ex: [[0, 2], [0, 3], ...]
     :return: array where i-th element is number of color of i-th vertex
