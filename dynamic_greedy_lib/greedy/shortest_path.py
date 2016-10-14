@@ -1,7 +1,17 @@
 from utils import table as table_utils
 
 """
-Given a graph and a source vertex in graph, find shortest paths from source to all vertices in the given graph.
+Given a graph and a source vertex in graph, find shortest paths from source
+to all vertices in the given graph. Dijkstra’s algorithm.
+
+Applications:
+    "Shortest path algorithms are applied to automatically find directions
+    between physical locations, such as driving directions on web mapping
+    websites like MapQuest or Google Maps. In a networking or
+    telecommunications mindset, this shortest path problem is
+    sometimes called the min-delay path problem. Other applications, often
+    studied in operations research, include plant and facility layout,
+    robotics, transportation, and VLSI design." [Wikiédia]
 
 Complexity: O(V^2)
     Where V is the number of vertices.

@@ -22,8 +22,8 @@ Resources:
 
 def solve(input):
     """
-    Input should contain two strings
-    Output edit distance as an integer
+    :param input: should contain two strings
+    :return: edit distance as an integer
     """
     return _edit_distance(input[0], input[1], len(input[0]), len(input[1]))
 
