@@ -41,7 +41,6 @@ def solve(input):
                     alphabetical order of the symbols)
                                 ex: [['a', '0'], ['b', '111'], ['c', '110'], ['d', '100'], ['e', '101']]
     """
-
     return _huffman_coding(input[0], input[1])
 
 
