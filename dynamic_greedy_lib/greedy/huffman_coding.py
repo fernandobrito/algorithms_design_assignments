@@ -37,7 +37,8 @@ def solve(input):
                     of the symbol list).
                                 ex: [['a', 'b', 'c', 'd', 'e'], [24, 12, 10, 8, 8]]
 
-    :return:    array that contain the inserted symbols and their respective huffman code
+    :return:        array that contain the inserted symbols and their respective huffman code (sorted by
+                    alphabetical order of the symbols)
                                 ex: [['a', '0'], ['b', '111'], ['c', '110'], ['d', '100'], ['e', '101']]
     """
 
