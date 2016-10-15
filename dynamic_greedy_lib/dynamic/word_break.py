@@ -2,21 +2,29 @@
     Author: Jaelson Carvalho - 11427671
     Python 3.4.3
     Usage: python word_break.py
+
     Resources:
         http://www.geeksforgeeks.org/dynamic-programming-set-32-word-break-problem/
 
 
     Description:
+        Given an input string and a dictionary of words, find out if the input string can be segmented
+        into a space-separated sequence of dictionary words.
 
-    Complexity:
+    Complexity: O(n²)
 
     Application:
+
 """
 
 def solve(input):
     """
-    Input : should contain a string that will be analyzed and a list that has the words on the dictionary.
-    Output : boolean value that answer if string can be table into space separated words.
+    :param input:   array with first element: a string that will be analyzed, second element: list that
+                    has the words on the dictionary.
+                                ex: ["dynamicprogramming", ["programming", "dynamic"]]
+
+    :return:        boolean value that answers if string can be segmented into space separated words.
+                                ex: True
     """
     return _word_break(input[0], input[1])
 
