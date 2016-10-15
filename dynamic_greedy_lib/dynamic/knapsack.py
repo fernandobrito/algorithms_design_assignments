@@ -12,21 +12,33 @@ from utils import table as table_utils
         http://www.grokit.ca/cnt/KnapsackProblem/
 
     Description:
+        Given weights and values of n items, put these items in a knapsack of capacity W
+        to get the maximum total value in the knapsack.
 
-    Complexity:
+    Complexity: O(nW)
+        Where n is the number of items and W is the capacity of knapsack.
 
-    Application:
+    Applications:
+        The spaceships which they will be taking to mars for human settlement there would
+        use similar algorithm to maximize the values of goods which they want to carry.
 """
 
 
 def solve(input):
     """
-    Input : should contain a values list, a weight list and the total capacity.
-    Output : maximum value that can be put in a backpack of the given capacity.
+    :param input:   array with first element: total capacity of the knapsack, second element: weight
+                    list (should be non-empty) and third element: value list (should be non-empty).
+                                ex: [15, [10, 20, 30], [60, 100, 120]]
+
+    :return:        integer that represents maximum value that can be put in a backpack of the given capacity.
+                                ex: 60
     """
     return _knapsack(input[0], input[1], input[2])
 
 
+# val = values list
+# wt = weight list
+# W = total capacity
 def _knapsack(W, wt, val):
 
     # Get numbers of rows on the table
