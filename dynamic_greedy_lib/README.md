@@ -2,9 +2,24 @@
 
 ## Usage
 
-## Development guidelines
+Developed using Python 3.4.
 
-Python 3.4.
+To run a single test:
+
+```
+$ sh runner.sh <filename>
+$ sh runner.sh greedy/tests/graph_coloring.py
+```
+
+To run all tests, pass no arguments:
+
+```
+$ sh runner.sh
+```
+
+Make sure you run the command from within the same folder as it is located.
+
+## Development guidelines
 
 Keep it simple. Only one public function, called `solve`, which takes an array as argument. 
 Other functions should be prefixed with a single underscore.
