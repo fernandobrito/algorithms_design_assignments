@@ -1,3 +1,22 @@
+"""
+    Author: Jorismar Barbosa - 11121191
+    Python 3.4.3
+    Usage: python subset_sum_problem.py
+
+    Resources:
+        http://www.geeksforgeeks.org/dynamic-programming-subset-sum-problem/
+        https://www.youtube.com/watch?v=tfN2bFx9VRI
+        https://www.youtube.com/watch?v=5td2QH-x5ck
+
+    Description:
+
+    Complexity: O(sum*n)
+        Where n is the number of elements
+
+    Applications:
+
+"""
+
 from utils import table as table_utils
 
 def solve(input):

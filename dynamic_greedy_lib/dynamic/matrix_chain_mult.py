@@ -1,3 +1,22 @@
+"""
+    Author: Jorismar Barbosa - 11121191
+    Python 3.4.3
+    Usage: python matrix_chain_mult.py
+
+    Resources:
+        http://www.geeksforgeeks.org/dynamic-programming-set-8-matrix-chain-multiplication/
+        https://www.youtube.com/watch?v=D2u1-yQwRIQ
+        https://www.youtube.com/watch?v=GMzVeWpyTN0
+
+    Description:
+
+    Complexity: O(n³)
+        Where n is the number of matrixes
+
+    Applications:
+
+"""
+
 import sys
 from utils import table as table_utils
 
