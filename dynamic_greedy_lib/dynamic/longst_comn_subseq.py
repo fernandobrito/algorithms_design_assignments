@@ -12,15 +12,15 @@
         "The longest common subsequence (LCS) problem is the problem of finding the longest subsequence common to all sequences in a 
         set of sequences (often just two sequences). It differs from problems of finding common substrings: unlike substrings, subsequences 
         are not required to occupy consecutive positions within the original sequences. The longest common subsequence problem is a classic 
-        computer science problem, the basis of data comparison programs such as the diff utility, and has applications in bioinformatics. 
-        It is also widely used by revision control systems such as Git for reconciling multiple changes made to a revision-controlled 
-        collection of files." [Wikipedia]
+        computer science problem, the basis of data comparison programs such as the diff utility, and has applications in bioinformatics." 
+        [Wikipedia]
 
     Complexity: O(m*n)
         Where m is the length of first string and n is the length of second string
 
     Applications:
-        ""
+        "It is also widely used by revision control systems such as Git for reconciling multiple changes made to a revision-controlled 
+        collection of files." [Wikipedia]
 """
 
 from utils import table as table_utils

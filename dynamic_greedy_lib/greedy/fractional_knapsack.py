@@ -44,7 +44,7 @@ def solve(input):
 def _fractional_knapsack(capacity, items):
     total_value = 0.0
     total_weight = 0
-    sorted_items = sorted(items, key=lambda item: item[0] / item[1])
+    sorted_items = sorted(items, key=lambda item: float(item[0] / item[1]))
     sorted_items = sorted_items[::-1]
 
     for item in sorted_items:

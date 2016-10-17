@@ -9,12 +9,15 @@
         https://www.youtube.com/watch?v=GMzVeWpyTN0
 
     Description:
+        "Matrix chain multiplication (or Matrix Chain Ordering Problem, MCOP) is an optimization problem that can be solved 
+        using dynamic programming. Given a sequence of matrices, the goal is to find the most efficient way to multiply these 
+        matrices." [Wikipedia]
 
     Complexity: O(n³)
         Where n is the number of matrixes
 
     Applications:
-
+        "To decide the sequence of the matrix multiplications involved."
 """
 
 import sys

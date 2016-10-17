@@ -9,11 +9,15 @@
         https://www.youtube.com/watch?v=5td2QH-x5ck
 
     Description:
+        "In computer science, the subset sum problem is an important problem in complexity theory and cryptography. The problem is 
+         this: given a set (or multiset) of integers, is there a non-empty subset whose sum is zero? For example, 
+         given the set {−7, −3, −2, 5, 8}, the answer is yes because the subset {−3, −2, 5} sums to zero. The problem is NP-complete. An equivalent 
+         problem is this: given a set of integers and an integer s, does any non-empty subset sum to s? Subset sum can also be thought of as a 
+         special case of the knapsack problem. One interesting special case of subset sum is the partition problem, in which s is half of the 
+         sum of all elements in the set." [Wikipedia]
 
     Complexity: O(sum*n)
         Where n is the number of elements
-
-    Applications:
 
 """
 
