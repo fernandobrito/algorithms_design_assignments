@@ -1,4 +1,4 @@
-#from utils.tests import TestRunner
+from utils.tests import TestRunner
 from dynamic import subset_sum_problem
 
 """
