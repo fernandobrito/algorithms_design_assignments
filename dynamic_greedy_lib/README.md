@@ -37,20 +37,20 @@ Check `dynamic/edit_distance.py` for comment header template.
 |               	            |   Empilhamento de caixas  	|         -        	|     -    	|
 | Floyd Warshall All Pairs Shortest Path | Caminho mais curto   | shortest_path.py 	| Fernando 	|
 | Word Break      	            |     Quebra de palavras    	| word_break.py 	|  Jaelson 	|
-|               	            |  Maior subsequência comum 	|                  	| Jorismar 	|
-|               	            |    Soma de subconjunto    	|                  	| Jorismar 	|
-|               	            | Multiplicação de matrizes 	|                  	| Jorismar 	|
+| Longest Common Subsequence    |  Maior subsequência comum 	| longst_comn_subseq.py | Jorismar 	|
+| Subset Sum Problem            |    Soma de subconjunto    	| subset_sum_problem.py | Jorismar 	|
+| Matrix Chain Multiplication   | Multiplicação de matrizes 	| matrix_chain_mult.py | Jorismar 	|
 | Edit Levenshtein Distance     |    Distância de edição    	| edit_distance.py 	| Fernando  |
 
 ## Greedy Programming
 |   Algorithm   	            |     Algorithm (pt-BR)                            	|       File            |  Author  	|
 |:-------------:	            |:----------------------------------------------:	|:-------------:        |:--------:	|
 | Dijkstra’s Shortest Path      | Caminho mais curto (Algoritmo de Dijkstra) 	    | shortest_path.py      | Fernando 	|
-|   	                        | Árvore geradora mínima (Algoritmo de Kruskal) 	|   	                | Jorismar 	|
+| Kruskal’s Minimum Spanning Tree Algorithm | Árvore geradora mínima (Algoritmo de Kruskal) 	| kruskal_coding.py     | Jorismar 	|
 |   	                        | Árvore geradora mínima (Algoritmo de Prim)    	| - 	                | -        	|
 | Huffman Coding                | Compressão de dados (Código de Huffman)       	| huffman_coding.py     | Jaelson  	|
 | Activity Selection            | Seleção de atividades                         	| activity_selection.py | Jaelson  	|
-|   	                        | Mochila fracionária                           	|   	                | Jorismar 	|
+| Fractional Knapsack Problem   | Mochila fracionária                           	| fractional_knapsack.py | Jorismar 	|
 | Graph Coloring                | Coloração de grafos                           	| graph_coloring.py     | Fernando 	|
 
 ## Credits

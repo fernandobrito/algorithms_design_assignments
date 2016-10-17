@@ -6,15 +6,16 @@ from dynamic import subset_sum_problem
     Python 3.4.3
     Usage: python subset_sum_problem.py
 """
+runner = TestRunner(subset_sum_problem.solve)
 
-# True -> https://www.youtube.com/watch?v=5td2QH-x5ck
-print(subset_sum_problem.solve([[1, 3, 9, 2], 5]))
+# Resource: https://www.youtube.com/watch?v=5td2QH-x5ck
+runner.expect_equal([[1, 3, 9, 2], 5], True)
 
-# True -> https://www.youtube.com/watch?v=tfN2bFx9VRI
-print(subset_sum_problem.solve([[4, 2, 1, 3], 5]))
+# Resource: https://www.youtube.com/watch?v=tfN2bFx9VRI
+runner.expect_equal([[4, 2, 1, 3], 5], True)
 
-# True -> http://www.geeksforgeeks.org/dynamic-programming-subset-sum-problem/ 
-print(subset_sum_problem.solve([[3, 34, 4, 12, 5, 2], 9]))
+# Resource: http://www.geeksforgeeks.org/dynamic-programming-subset-sum-problem/ 
+runner.expect_equal([[3, 34, 4, 12, 5, 2], 9], True)
 
 # False 
-print(subset_sum_problem.solve([[3, 34, 4, 12, 5], 10]))
+runner.expect_equal([[3, 34, 4, 12, 5], 10], False)
