@@ -14,6 +14,7 @@
     Complexity: O(n²)
 
     Application:
+        Spellchecker for mobile devices
 
 """
 
