@@ -44,7 +44,7 @@ class KnapsackParser:
         # Build the items and add it to the knap sack
         for item_index in range(len(constraints_list)):
             item = Item(constraints_list[item_index], profits[item_index])
-            knapsack.add_available_item(item)
+            knapsack.register_available_item(item)
 
         return knapsack
 
