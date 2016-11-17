@@ -5,9 +5,9 @@ import math
 import random
 from pprint import pprint
 
-from metaheuristics.techniques.heuristic import Heuristic
+from metaheuristics.techniques.metaheuristic import MetaHeuristic
 
-class SimulatedAnnealing(Heuristic):
+class SimulatedAnnealing(MetaHeuristic):
     def __init__(self, temperature=1, freezing_rate=0.001):
         self.temperature = temperature
         self.freezing_rate = freezing_rate

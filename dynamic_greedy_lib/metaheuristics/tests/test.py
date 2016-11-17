@@ -9,11 +9,11 @@ def runTest():
 
     pprint(vars(knapsack))
 
-    simulated_annealing = SimulatedAnnealing()
+    heuristic = SimulatedAnnealing()
 
     for index in range(10):
         print("=== Running ", index)
-        knapsack = simulated_annealing.execute_once(knapsack)
+        knapsack = heuristic.execute_once(knapsack)
         pprint(knapsack)
 
 if __name__ == "__main__":

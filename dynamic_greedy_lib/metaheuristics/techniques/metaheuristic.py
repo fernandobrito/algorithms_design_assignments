@@ -1,7 +1,11 @@
 import copy
 import random
 
-class Heuristic:
+class MetaHeuristic:
+    # To be implemented
+    def execute_once(self, knapsack):
+        pass
+
     def generate_random_number(self):
         return 1
 
