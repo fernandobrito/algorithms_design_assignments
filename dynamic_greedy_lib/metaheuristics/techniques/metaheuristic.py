@@ -7,8 +7,15 @@ class MetaHeuristic:
     def execute_once(self, knapsack):
         pass
 
+    # To be implemented
+    def has_finished(self):
+        pass
+
+    def number_iterations(self):
+        return self.iterations
+
     def generate_random_number(self):
-        return 5
+        return 2
 
     def get_best_from_random_neighbours(self, knapsack, number_random):
         neighbours = []
@@ -19,8 +26,12 @@ class MetaHeuristic:
 
         neighbours.sort(key=lambda n: n.evaluate())
 
-        # Choose best
-        return neighbours.pop()
+        best = neighbours.pop()
+
+        if best.evaluate() == -1:
+            return None
+        else:
+            return best
 
     def generate_neighbour(self, knapsack):
         neighbour = copy.deepcopy(knapsack)

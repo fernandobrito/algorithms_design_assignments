@@ -8,12 +8,13 @@ from pprint import pprint
 from metaheuristics.techniques.metaheuristic import MetaHeuristic
 
 class SimulatedAnnealing(MetaHeuristic):
-    def __init__(self, temperature=100, freezing_rate=0.001):
+    def __init__(self, temperature=1, freezing_rate=0.999, minimum_temperature=0.05):
         self.iterations = -1
         self.temperature = temperature
+        self.minimum_temperature = minimum_temperature
         self.freezing_rate = freezing_rate
 
-        self.temperature_logger = TemperatureProbabilityLogger()
+        self.temperature_logger = Logger()
 
     def execute_once(self, knapsack):
         self.iterations += 1
@@ -24,18 +25,23 @@ class SimulatedAnnealing(MetaHeuristic):
         # Generate N random neighbours and return best
         best_neighbour = self.get_best_from_random_neighbours(knapsack, number_neighbours)
 
+        if best_neighbour is None:
+            print("====> No valid neighbour found")
+            return knapsack
+
         print("Selected best best_neighbour")
         pprint(vars(best_neighbour))
 
         print("===> Probability :", self.__calculate_probability(knapsack, best_neighbour))
-        self.temperature_logger.log(self.iterations, self.temperature, self.__calculate_probability(knapsack, best_neighbour))
+
+        chosen = None
 
         if best_neighbour.compare_with(knapsack) > 1:
             # If best neighbour is best than current backpack
             # choose it and freeze the temperature
             print("====> Better solution. Freezing. Current temperature ", self.temperature)
             self.__freeze_temperature()
-            return best_neighbour
+            chosen = best_neighbour
         else:
             print("====> Worse solution")
 
@@ -44,33 +50,45 @@ class SimulatedAnnealing(MetaHeuristic):
             calculated_random = random.random()
             calculated_probability = self.__calculate_probability(knapsack, best_neighbour)
 
-            if calculated_random >= calculated_probability:
-                print("====> Chose worst. ", calculated_random, " > ", calculated_probability)
+            if calculated_probability >= calculated_random:
+                print("====> Chose worst. ", calculated_probability, " > ", calculated_random)
 
                 self.__heat_temperature()
-                return best_neighbour
+                chosen = best_neighbour
             else:
-                print("====> Stayed with best. ", calculated_random, " < ", calculated_probability)
+                print("====> Stayed with best. ", calculated_probability, " < ", calculated_random)
                 self.__freeze_temperature()
-                return knapsack
+                chosen = knapsack
 
+
+        self.temperature_logger.log(self.iterations, chosen.rpd(), self.temperature,
+                                    self.__calculate_probability(knapsack, best_neighbour))
+
+        return chosen
+
+
+    def has_finished(self):
+        return (self.temperature < self.minimum_temperature)
 
     def __calculate_probability(self, current, next):
-        delta = next.evaluate() - current.evaluate()
-        return 1/(1 + math.exp(delta / self.temperature))
+        # In %
+        delta = (current.evaluate() - next.evaluate())/current.evaluate()
+
+        return math.pow(math.exp(-delta / self.temperature), 10)
 
     def __heat_temperature(self):
-        self.temperature += self.freezing_rate
+        self.temperature *= 1 + (math.pow(1 - self.freezing_rate, 1.1))
 
     def __freeze_temperature(self):
-        self.temperature -= self.freezing_rate
+        self.temperature *= self.freezing_rate
 
 
 
-class TemperatureProbabilityLogger:
+
+class Logger:
     def __init__(self):
-        self.file = open('../output/temperature.txt', 'w')
-        self.file.write('iteration;temperature;probability')
+        self.file = open('../output/output.txt', 'w')
+        self.file.write('iteration;rpd;temperature;probability\n')
 
-    def log(self, iteration, temperature, probability):
-        self.file.write("{0};{1};{2}\n".format(iteration, temperature, probability))
+    def log(self, iteration, rpd, temperature, probability):
+        self.file.write("{0};{1};{2};{3}\n".format(iteration, rpd, temperature, probability))

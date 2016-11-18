@@ -66,10 +66,6 @@ class Knapsack:
             # Check if constraint was exceeded
             for index in range(len(accumulator)):
                 if accumulator[index] > self.constraint_limits[index]:
-                    # print('Constraint exceeded')
-                    # print(accumulator)
-                    # print(self.constraint_limits)
-
                     return -1
 
         return self.total_profit
@@ -91,6 +87,13 @@ class Knapsack:
 
         return previous
 
+    def rpd(self):
+        """
+        Relative percent deviation. How many % from optimal solution
+        :return:
+        """
+
+        return 1 - (self.total_profit / self.optimal_solution)
 
 class Item:
     def __init__(self, constraints, profit):
