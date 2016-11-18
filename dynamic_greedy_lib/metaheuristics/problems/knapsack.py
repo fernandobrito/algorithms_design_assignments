@@ -76,6 +76,10 @@ class Knapsack:
         last when ordering
         """
 
+        # Handle precision errors
+        if self.total_profit < 0.0001:
+            self.total_profit = 0
+
         # Start array with 0s
         accumulator = [0 for _ in self.constraint_limits]
 

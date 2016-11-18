@@ -3,10 +3,10 @@ from pprint import pprint
 from metaheuristics.problems.knapsack import Knapsack
 from metaheuristics.techniques.simulated_annealing import SimulatedAnnealing
 
-MAX_ITERATIONS = 10000
+MAX_ITERATIONS = 20000
 
 def runTest():
-    file = open('mknap1_1.txt', 'r')
+    file = open('mknap1_2.txt', 'r')
     knapsack = Knapsack.from_file(file)
 
     pprint(vars(knapsack))

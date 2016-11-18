@@ -1,4 +1,4 @@
-from utils.string import split_to_int
+from utils.string import split_to_float
 
 class KnapsackParser:
     @staticmethod
@@ -10,19 +10,22 @@ class KnapsackParser:
     def parse_file(file):
         # Parse first line
         header = file.readline()
-        amount_items, amount_constraints, optimal_solution = split_to_int(header)
+        amount_items, amount_constraints, optimal_solution = split_to_float(header)
+
+        amount_items = int(amount_items)
+        amount_constraints = int(amount_constraints)
 
         # Parse profits
-        profits = split_to_int(file.readline())
+        profits = split_to_float(file.readline())
 
         # Parse constraints coefficients
         constraints_list = []
 
         for _ in range(amount_constraints):
-            constraints_list.append(split_to_int(file.readline()))
+            constraints_list.append(split_to_float(file.readline()))
 
         # Parse constraints limit
-        constraints_limits = split_to_int(file.readline())
+        constraints_limits = split_to_float(file.readline())
 
         # Transpose matrix
         # File gives a row for constraint, each item on a column

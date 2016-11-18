@@ -1,4 +1,4 @@
-def split_to_int(string, divider=' '):
+def split_to_float(string, divider=' '):
     """
     Splits a string using split(divider) and convert all elements to integers
 
@@ -6,4 +6,4 @@ def split_to_int(string, divider=' '):
     :param divider: divider used on split. default: ' '
     :return: list with integers
     """
-    return [int(number) for number in string.split(divider)]
+    return [float(number) for number in string.split(divider)]
