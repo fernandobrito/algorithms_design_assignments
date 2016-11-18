@@ -8,7 +8,7 @@ from pprint import pprint
 from metaheuristics.techniques.metaheuristic import MetaHeuristic
 
 class SimulatedAnnealing(MetaHeuristic):
-    def __init__(self, temperature=1, freezing_rate=0.999, minimum_temperature=0.05):
+    def __init__(self, temperature=1, freezing_rate=0.999, minimum_temperature=0.01):
         self.iterations = -1
         self.temperature = temperature
         self.minimum_temperature = minimum_temperature

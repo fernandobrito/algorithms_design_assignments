@@ -15,7 +15,7 @@ class MetaHeuristic:
         return self.iterations
 
     def generate_random_number(self):
-        return 2
+        return 5
 
     def get_best_from_random_neighbours(self, knapsack, number_random):
         neighbours = []
