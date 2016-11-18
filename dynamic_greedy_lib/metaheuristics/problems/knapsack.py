@@ -1,4 +1,6 @@
 import random
+import copy
+from operator import add
 
 class Knapsack:
     @staticmethod
@@ -22,10 +24,10 @@ class Knapsack:
         :param other_knapsack:
         :return: ratio of improvement
         """
-        if other_knapsack.total_profit == 0:
-            return self.total_profit
+        if other_knapsack.evaluate() == 0:
+            return self.evaluate()
 
-        return self.total_profit / other_knapsack.total_profit
+        return self.evaluate() / other_knapsack.evaluate()
 
     def insert_item(self, item):
         self.inserted_items.append(item)
@@ -35,13 +37,59 @@ class Knapsack:
         return self.available_items.pop(random.randrange(len(self.available_items)))
 
     def pop_random_inserted_item(self):
-        return self.inserted_items.pop(random.randrange(len(self.inserted_items)))
+        item = self.inserted_items.pop(random.randrange(len(self.inserted_items)))
+        self.total_profit -= item.profit
+
+        return item
 
     def has_no_inserted_items(self):
         return len(self.available_items) != 0
 
     def has_inserted_items(self):
         return len(self.inserted_items) != 0
+
+    def evaluate(self):
+        """
+        Evaluate function
+
+        :return: profit if valid or -1 if invalid. It makes invalid solutions appear
+        last when ordering
+        """
+
+        # Start array with 0s
+        accumulator = [0 for _ in self.constraint_limits]
+
+        # Add constraints from item by item in accumulator
+        for item in self.inserted_items:
+            accumulator = list(map(add, accumulator, item.constraints))
+
+            # Check if constraint was exceeded
+            for index in range(len(accumulator)):
+                if accumulator[index] > self.constraint_limits[index]:
+                    print('Constraint exceeded')
+                    print(accumulator)
+                    print(self.constraint_limits)
+
+                    return -1
+
+        return self.total_profit
+
+    def randomize(self):
+        """
+        Assumes a random knapsack at start and insert random items
+        until it's full
+
+        :return: a new backpack instance
+        """
+
+        previous = None
+        new = copy.deepcopy(self)
+
+        while new.evaluate() != -1:
+            previous = copy.deepcopy(new)
+            new.insert_item(new.pop_random_available_item())
+
+        return previous
 
 
 class Item:

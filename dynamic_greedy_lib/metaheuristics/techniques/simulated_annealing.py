@@ -8,7 +8,7 @@ from pprint import pprint
 from metaheuristics.techniques.metaheuristic import MetaHeuristic
 
 class SimulatedAnnealing(MetaHeuristic):
-    def __init__(self, temperature=1, freezing_rate=0.001):
+    def __init__(self, temperature=100, freezing_rate=0.99):
         self.temperature = temperature
         self.freezing_rate = freezing_rate
 
@@ -22,27 +22,38 @@ class SimulatedAnnealing(MetaHeuristic):
         print("Selected best best_neighbour")
         pprint(vars(best_neighbour))
 
-        if best_neighbour.compare_with(knapsack):
+        print("===> Probability :", self.__calculate_probability(knapsack, best_neighbour))
+
+        if best_neighbour.compare_with(knapsack) > 1:
             # If best neighbour is best than current backpack
             # choose it and freeze the temperature
+            print("====> Better solution. Freezing. Current temperature ", self.temperature)
             self.__freeze_temperature()
             return best_neighbour
         else:
+            print("====> Worse solution")
+
             # Else, there is a chance that we still choose
             # a worst solution
-            if random.random() >= self.__calculate_probability(knapsack, best_neighbour):
+            calculated_random = random.random()
+            calculated_probability = self.__calculate_probability(knapsack, best_neighbour)
+
+            if calculated_random >= calculated_probability:
+                print("====> Chose worst. ", calculated_random, " > ", calculated_probability)
+
                 self.__heat_temperature()
                 return best_neighbour
             else:
+                print("====> Stayed with best. ", calculated_random, " < ", calculated_probability)
                 return knapsack
 
 
     def __calculate_probability(self, current, next):
-        delta = current.total_profit - next.total_profit
-        return math.exp(delta / self.temperature);
+        delta = next.evaluate() - current.evaluate()
+        return 1/(1 + math.exp(delta / self.temperature))
 
     def __heat_temperature(self):
-        self.temperature += self.freezing_rate
+        self.temperature *= self.freezing_rate
 
     def __freeze_temperature(self):
-        self.temperature -= self.freezing_rate
+        self.temperature *= self.freezing_rate

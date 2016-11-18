@@ -1,13 +1,14 @@
 import copy
 import random
 
+
 class MetaHeuristic:
     # To be implemented
     def execute_once(self, knapsack):
         pass
 
     def generate_random_number(self):
-        return 1
+        return 5
 
     def get_best_from_random_neighbours(self, knapsack, number_random):
         neighbours = []
@@ -16,7 +17,7 @@ class MetaHeuristic:
         for _ in range(number_random):
             neighbours.append(self.generate_neighbour(knapsack))
 
-        neighbours.sort(key=lambda n: n.total_profit)
+        neighbours.sort(key=lambda n: n.evaluate())
 
         # Choose best
         return neighbours.pop()
