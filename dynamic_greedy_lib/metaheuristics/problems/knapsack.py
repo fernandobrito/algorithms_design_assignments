@@ -66,9 +66,9 @@ class Knapsack:
             # Check if constraint was exceeded
             for index in range(len(accumulator)):
                 if accumulator[index] > self.constraint_limits[index]:
-                    print('Constraint exceeded')
-                    print(accumulator)
-                    print(self.constraint_limits)
+                    # print('Constraint exceeded')
+                    # print(accumulator)
+                    # print(self.constraint_limits)
 
                     return -1
 

@@ -8,11 +8,16 @@ from pprint import pprint
 from metaheuristics.techniques.metaheuristic import MetaHeuristic
 
 class SimulatedAnnealing(MetaHeuristic):
-    def __init__(self, temperature=100, freezing_rate=0.99):
+    def __init__(self, temperature=100, freezing_rate=0.001):
+        self.iterations = -1
         self.temperature = temperature
         self.freezing_rate = freezing_rate
 
+        self.temperature_logger = TemperatureProbabilityLogger()
+
     def execute_once(self, knapsack):
+        self.iterations += 1
+
         # Generate a random number
         number_neighbours = self.generate_random_number()
 
@@ -23,6 +28,7 @@ class SimulatedAnnealing(MetaHeuristic):
         pprint(vars(best_neighbour))
 
         print("===> Probability :", self.__calculate_probability(knapsack, best_neighbour))
+        self.temperature_logger.log(self.iterations, self.temperature, self.__calculate_probability(knapsack, best_neighbour))
 
         if best_neighbour.compare_with(knapsack) > 1:
             # If best neighbour is best than current backpack
@@ -45,6 +51,7 @@ class SimulatedAnnealing(MetaHeuristic):
                 return best_neighbour
             else:
                 print("====> Stayed with best. ", calculated_random, " < ", calculated_probability)
+                self.__freeze_temperature()
                 return knapsack
 
 
@@ -53,7 +60,17 @@ class SimulatedAnnealing(MetaHeuristic):
         return 1/(1 + math.exp(delta / self.temperature))
 
     def __heat_temperature(self):
-        self.temperature *= self.freezing_rate
+        self.temperature += self.freezing_rate
 
     def __freeze_temperature(self):
-        self.temperature *= self.freezing_rate
+        self.temperature -= self.freezing_rate
+
+
+
+class TemperatureProbabilityLogger:
+    def __init__(self):
+        self.file = open('../output/temperature.txt', 'w')
+        self.file.write('iteration;temperature;probability')
+
+    def log(self, iteration, temperature, probability):
+        self.file.write("{0};{1};{2}\n".format(iteration, temperature, probability))
