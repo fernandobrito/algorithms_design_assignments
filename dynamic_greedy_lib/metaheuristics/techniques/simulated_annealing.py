@@ -7,9 +7,13 @@ from pprint import pprint
 
 from metaheuristics.techniques.metaheuristic import MetaHeuristic
 
+# The higher, the lower the chance of accepting worse solutions
+POWER_PROBABILITY = 2
+
 class SimulatedAnnealing(MetaHeuristic):
     def __init__(self, temperature=1, freezing_rate=0.999, minimum_temperature=0.01):
-        self.iterations = -1
+        super().__init__()
+
         self.temperature = temperature
         self.minimum_temperature = minimum_temperature
         self.freezing_rate = freezing_rate
@@ -17,8 +21,6 @@ class SimulatedAnnealing(MetaHeuristic):
         self.temperature_logger = Logger()
 
     def execute_once(self, knapsack):
-        self.iterations += 1
-
         # Generate a random number
         number_neighbours = self.generate_random_number()
 
@@ -64,6 +66,8 @@ class SimulatedAnnealing(MetaHeuristic):
         self.temperature_logger.log(self.iterations, chosen.rpd(), self.temperature,
                                     self.__calculate_probability(knapsack, best_neighbour))
 
+        self.register_solution(chosen)
+
         return chosen
 
 
@@ -72,9 +76,14 @@ class SimulatedAnnealing(MetaHeuristic):
 
     def __calculate_probability(self, current, next):
         # In %
-        delta = (current.evaluate() - next.evaluate())/current.evaluate()
+        current_profit = current.evaluate()
 
-        return math.pow(math.exp(-delta / self.temperature), 10)
+        if current_profit != 0:
+            delta = (current_profit - next.evaluate())/current_profit
+        else:
+            delta = 0.5
+
+        return math.pow(math.exp(-delta / self.temperature), POWER_PROBABILITY)
 
     def __heat_temperature(self):
         self.temperature *= 1 + (math.pow(1 - self.freezing_rate, 1.1))

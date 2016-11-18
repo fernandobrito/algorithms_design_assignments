@@ -2,12 +2,32 @@ import random
 import copy
 from operator import add
 
+PARTS_TO_REMOVE_ON_INITIALIZATION = 8
+
+
 class Knapsack:
+
+    """
+    Represents a Knapsack instance/solution.
+    """
+
     @staticmethod
     def from_file(file):
+        """
+        Given a file, creates a knapsack instance.
+
+        :param file: file object
+        :return: Knapsack instance
+        """
         return KnapsackParser.parse(file)
 
     def __init__(self, constraints_limits, optimal_solution):
+        """
+
+
+        :param constraints_limits:
+        :param optimal_solution:
+        """
         self.constraint_limits = constraints_limits
         self.optimal_solution = optimal_solution
 
@@ -42,7 +62,7 @@ class Knapsack:
 
         return item
 
-    def has_no_inserted_items(self):
+    def has_available_items(self):
         return len(self.available_items) != 0
 
     def has_inserted_items(self):
@@ -73,7 +93,7 @@ class Knapsack:
     def randomize(self):
         """
         Assumes a random knapsack at start and insert random items
-        until it's full
+        until it's full. Then it removes half of the inserted items.
 
         :return: a new backpack instance
         """
@@ -84,6 +104,9 @@ class Knapsack:
         while new.evaluate() != -1:
             previous = copy.deepcopy(new)
             new.insert_item(new.pop_random_available_item())
+
+        for _ in range(int(len(previous.inserted_items)/PARTS_TO_REMOVE_ON_INITIALIZATION)):
+            previous.pop_random_inserted_item()
 
         return previous
 
