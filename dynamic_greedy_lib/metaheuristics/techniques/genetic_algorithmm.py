@@ -24,6 +24,7 @@ class GeneticAlgorithm(MetaHeuristic):
         self.mutation_probability = mutation_probability
         self.tournament_size = self.population_size // 10
         self.knapsack = None
+        self.current_generation = []
 
     def execute_once(self, knapsack):
         self.knapsack = knapsack
@@ -107,3 +108,47 @@ class GeneticAlgorithm(MetaHeuristic):
         members.sort(key=attrgetter('fitness'), reverse=self.maximise_fitness)
 
         return members[0]
+
+    def genes_evaluate(self, individual, data):
+        accumulator = [0] * len(data[0])
+
+        for (selected, item) in zip(individual, data):
+            if selected:
+                for index in range(len(accumulator)):
+                    accumulator[index] += item[index]
+
+        for index in range(len(accumulator) - 1):
+            if accumulator[index] > self.constraint_limits[index]:
+                accumulator[-1] = 0
+                break
+
+        return accumulator[-1]
+
+    def create_initial_population(self):
+        """Create members of the first population randomly."""
+        initial_population = []
+        for _ in range(self.population_size):
+            if random.random() < self.initial_similarity:
+                genes = self.create_individual_by_inheritance(self.seed_data)
+            else:
+                genes = self.create_individual_randomically(self.seed_data)
+
+            individual = Chromosome(genes)
+            initial_population.append(individual)
+
+        self.current_generation = initial_population
+
+
+class Chromosome(object):
+    """ Chromosome class that encapsulates an individual's fitness and solution
+    representation.
+    """
+    def __init__(self, genes):
+        """Initialise the Chromosome."""
+        self.genes = genes
+        self.fitness = 0
+
+    def __repr__(self):
+        """Return initialised Chromosome representation in human readable form.
+        """
+        return repr((self.fitness, self.genes))
