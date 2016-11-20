@@ -10,8 +10,16 @@ from metaheuristics.techniques.metaheuristic import MetaHeuristic
 # The higher, the lower the chance of accepting worse solutions
 POWER_PROBABILITY = 2
 
+
 class SimulatedAnnealing(MetaHeuristic):
     def __init__(self, temperature=1, freezing_rate=0.999, minimum_temperature=0.01):
+        """
+        Set up initial variables.
+
+        :param temperature: initial temperature
+        :param freezing_rate: freezing rate (will be multiplied when freezing)
+        :param minimum_temperature: used as stop condition
+        """
         super().__init__()
 
         self.temperature = temperature
@@ -21,6 +29,12 @@ class SimulatedAnnealing(MetaHeuristic):
         self.temperature_logger = Logger()
 
     def setup(self, knapsack):
+        """
+        Set up initial knapsack by randomizing the given empty one.
+
+        :param knapsack: knapsack from parser
+        :return: randomized knapsack
+        """
         return knapsack.randomize()
 
     def execute_once(self, knapsack):
@@ -65,7 +79,6 @@ class SimulatedAnnealing(MetaHeuristic):
                 self.__freeze_temperature()
                 chosen = knapsack
 
-
         self.temperature_logger.log(self.iterations, chosen.rpd(), self.temperature,
                                     self.__calculate_probability(knapsack, best_neighbour))
 
@@ -73,11 +86,18 @@ class SimulatedAnnealing(MetaHeuristic):
 
         return chosen
 
-
     def has_finished(self):
-        return (self.temperature < self.minimum_temperature)
+        return self.temperature < self.minimum_temperature
 
     def __calculate_probability(self, current, next):
+        """
+        Probability of accepting worse solutions.
+
+        :param current: current knapsack solution
+        :param next: next knapsack solution
+        :return: probability between 0 and 1
+        """
+
         # In %
         current_profit = current.evaluate()
 
@@ -89,12 +109,20 @@ class SimulatedAnnealing(MetaHeuristic):
         return math.pow(math.exp(-delta / self.temperature), POWER_PROBABILITY)
 
     def __heat_temperature(self):
+        """
+        Heat temperature. Used when we accept worse solutions.
+
+        :return: None
+        """
         self.temperature *= 1 + (math.pow(1 - self.freezing_rate, 1.1))
 
     def __freeze_temperature(self):
+        """
+        Freeze temperature. Used when we accept better solutions.
+
+        :return:
+        """
         self.temperature *= self.freezing_rate
-
-
 
 
 class Logger:
