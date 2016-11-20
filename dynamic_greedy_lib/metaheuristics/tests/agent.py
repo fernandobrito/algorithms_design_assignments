@@ -3,8 +3,8 @@ import time
 
 from metaheuristics.problems.knapsack import Knapsack
 
-MAX_ITERATIONS = 10000
-MAX_TIME = 5 # in seconds
+MAX_ITERATIONS = 20000
+MAX_TIME = 60 # in seconds
 
 class Agent:
     """
@@ -22,6 +22,9 @@ class Agent:
         # Timer
         self.timer = 0
 
+        # Logger
+        self.logger = Logger()
+
     def execute(self):
         for index in range(MAX_ITERATIONS):
             print("\n\n=== Running ", index)
@@ -36,7 +39,7 @@ class Agent:
             self.timer += time_difference
             print("====> Timer: ", self.timer)
 
-            # log
+            self.__log()
 
             # Check stop conditions
             # From heuristic
@@ -54,10 +57,20 @@ class Agent:
         self.knapsack = self.heuristic.execute_once(self.knapsack)
 
     def __log(self):
-        pass
+        self.logger.log(self.heuristic.iterations, self.knapsack.rpd(), self.heuristic.temperature)
 
     def __has_timedout(self):
         return self.timer > MAX_TIME
 
     def best_solution(self):
         return self.heuristic.best_solution
+
+
+
+class Logger:
+    def __init__(self):
+        self.file = open('../output/output.txt', 'w')
+        self.file.write('iteration;rpd\n')
+
+    def log(self, iteration, rpd):
+        self.file.write("{0};{1};{2}\n".format(iteration, rpd))
