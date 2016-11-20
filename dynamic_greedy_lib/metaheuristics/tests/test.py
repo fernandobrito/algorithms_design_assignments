@@ -2,7 +2,7 @@ from pprint import pprint
 
 from metaheuristics.problems.knapsack import Knapsack
 from metaheuristics.techniques.simulated_annealing import SimulatedAnnealing
-
+from metaheuristics.techniques.genetic_algorithm import GeneticAlgorithm
 MAX_ITERATIONS = 20000
 
 def runTest():
@@ -12,6 +12,7 @@ def runTest():
     pprint(vars(knapsack))
 
     heuristic = SimulatedAnnealing()
+    #heuristic = GeneticAlgorithm()
 
     # Fill the knapsack randomly
     knapsack = knapsack.randomize()
