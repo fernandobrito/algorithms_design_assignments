@@ -2,6 +2,7 @@
 # https://github.com/remiomosowon/pyeasyga/blob/develop/pyeasyga/pyeasyga.py
 
 import random
+from operator import attrgetter
 
 from metaheuristics.techniques.metaheuristic import MetaHeuristic
 
@@ -9,6 +10,7 @@ class GeneticAlgorithm(MetaHeuristic):
     def __init__(self,
                  seed_data,
                  constraint_limits,
+                 population_size=10,
                  initial_similarity_probability=0.5,
                  crossover_probability=0.8,
                  mutation_probability=0.5):
@@ -16,9 +18,11 @@ class GeneticAlgorithm(MetaHeuristic):
 
         self.seed_data = self.build_seed_data(seed_data)
         self.constraint_limits = constraint_limits
+        self.population_size = population_size,
         self.initial_similarity_probability = initial_similarity_probability
         self.crossover_probability = crossover_probability
         self.mutation_probability = mutation_probability
+        self.tournament_size = self.population_size // 10
         self.knapsack = None
 
     def execute_once(self, knapsack):
@@ -90,3 +94,16 @@ class GeneticAlgorithm(MetaHeuristic):
     def random_selection(self, population):
         """Select and return a random member of the population."""
         return random.choice(population)
+
+    def tournament_selection(self, population):
+        """Select a random number of individuals from the population and
+        return the fittest member of them all.
+        """
+
+        if self.tournament_size == 0:
+            self.tournament_size = 2
+
+        members = random.sample(population, self.tournament_size)
+        members.sort(key=attrgetter('fitness'), reverse=self.maximise_fitness)
+
+        return members[0]
