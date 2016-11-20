@@ -73,12 +73,12 @@ class AgentLogger:
         self.counter = counter
 
         self.file = open('../output/agents.txt', 'a')
-        self.file.write('counter;filename;heuristic;rpd\n')
 
     @staticmethod
     def clear_log():
         file = open('../output/agents.txt', 'w')
         file.truncate()
+        file.write('counter;filename;heuristic;rpd\n')
 
     def log(self, heuristic, rpd):
         self.file.write("{0};{1};{2};{3}\n".format(self.counter, self.filename, heuristic, rpd))
