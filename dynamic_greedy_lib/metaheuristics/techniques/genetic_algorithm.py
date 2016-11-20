@@ -9,9 +9,7 @@ from metaheuristics.techniques.metaheuristic import MetaHeuristic
 
 class GeneticAlgorithm(MetaHeuristic):
     def __init__(self,
-                 seed_data,
-                 constraint_limits,
-                 MAX_ITERATIONS,
+                 MAX_ITERATIONS = 20000,
                  population_size=8,
                  generations=4,
                  initial_similarity_probability=0.9,
@@ -21,21 +19,28 @@ class GeneticAlgorithm(MetaHeuristic):
                  maximise_fitness=True):
         super().__init__()
 
-        self.seed_data = self.build_seed_data(seed_data)
-        self.constraint_limits = constraint_limits
+        self.seed_data = None
+        self.constraint_limits = None
         self.population_size = population_size
         self.generations = generations
         self.initial_similarity_probability = initial_similarity_probability
         self.crossover_probability = crossover_probability
         self.mutation_probability = mutation_probability
         self.knapsack = None
-        self.current_generation = []
+        self.current_generation = None
         self.tournament_size = self.population_size // 10
         self.generations_counter = 0
         self.fitness_evaluations = 0
         self.max_fitness_evaluations = MAX_ITERATIONS * self.generations * self.population_size
         self.elitism = elitism
         self.maximise_fitness = maximise_fitness
+        self.best_genes = []
+        self.worst_genes = []
+
+    def setup(self, knapsack):
+        self.constraint_limits = knapsack.constraint_limits
+        self.seed_data = self.build_seed_data(knapsack.available_items)
+        return knapsack.randomize()
 
     def execute_once(self, knapsack):
         self.iterations += 1
@@ -44,8 +49,6 @@ class GeneticAlgorithm(MetaHeuristic):
         self.run()
 
         self.knapsack.total_profit = self.best_individual()[0]
-
-        self.set_global_individuals(self.best_individual())
 
         self.knapsack.available_items = []
         self.knapsack.inserted_items = []
@@ -56,15 +59,17 @@ class GeneticAlgorithm(MetaHeuristic):
             else:
                 self.knapsack.available_items.append(item)
 
+        self.set_global_individuals(self.best_individual())
+
         print ("===> Optimal solution: ", self.knapsack.optimal_solution)
         print ("===> Current solution: ", self.knapsack.total_profit)
         print ("===> Current distance from optimal solution(scale of 0 to 1): ", 1 - self.knapsack.total_profit/self.knapsack.optimal_solution)
         print ("===> Population size: ", self.population_size)
         print ("===> Generations: ", self.generations_counter)
         print ("===> Total of fitness evaluations : ", self.fitness_evaluations)
-        print ("\n===> Less distance from optimal solution(scale of 0 to 1): ", 1 - self.best_solution[0] / self.knapsack.optimal_solution)
-        print ("===> Best  solution: { Profit: ", self.best_solution[0], ", Genes: ", self.best_solution[1], "}")
-        print ("===> Worst solution: { Profit: ", self.worst_solution[0], ", Genes: ", self.worst_solution[1], "}")
+        print ("\n===> Less distance from optimal solution(scale of 0 to 1): ", 1 - self.best_solution.total_profit / self.knapsack.optimal_solution)
+        print ("===> Best  solution: { Profit: ", self.best_solution.total_profit, ", Genes:", self.best_genes, "}")
+        print ("===> Worst solution: { Profit: ", self.worst_solution.total_profit, ", Genes:", self.worst_genes, "}")
 
         return self.knapsack
 
@@ -242,12 +247,15 @@ class GeneticAlgorithm(MetaHeuristic):
 
     def set_global_individuals(self, best_individual):
         if self.iterations == 1:
-            self.worst_solution = best_individual
-            self.best_solution = best_individual
-        elif best_individual[0] < self.worst_solution[0]:
-                self.worst_solution = best_individual
-        elif best_individual[0] > self.best_solution[0]:
-                self.best_solution = best_individual
+            self.worst_solution = self.knapsack
+            self.best_solution = self.knapsack
+            self.best_genes = self.worst_genes = best_individual[1]
+        elif best_individual[0] < self.worst_solution.total_profit:
+                self.worst_genes = best_individual[1]
+                self.worst_solution = self.knapsack
+        elif best_individual[0] > self.best_solution.total_profit:
+                self.best_genes = best_individual[1]
+                self.best_solution = self.knapsack
 
 class Chromosome(object):
     """ Chromosome class that encapsulates an individual's fitness and solution
