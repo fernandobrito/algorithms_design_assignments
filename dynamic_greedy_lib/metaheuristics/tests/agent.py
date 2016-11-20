@@ -26,19 +26,24 @@ class Agent:
         for index in range(MAX_ITERATIONS):
             print("\n\n=== Running ", index)
 
+            # Execute execute_once on heuristic and time it
             start_time = time.time()
             self.__run_step()
             end_time = time.time()
 
+            # Print the time difference
             time_difference = end_time - start_time
             self.timer += time_difference
             print("====> Timer: ", self.timer)
 
             # log
 
+            # Check stop conditions
+            # From heuristic
             if self.heuristic.has_finished():
                 break
 
+            # From time
             if self.__has_timedout():
                 print("timed out!")
                 break
