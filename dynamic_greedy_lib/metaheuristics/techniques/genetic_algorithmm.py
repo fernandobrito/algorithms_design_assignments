@@ -7,9 +7,16 @@ class GeneticAlgorithm(MetaHeuristic):
     def __init__(self):
         super().__init__()
 
-        self.worst_solution = None
-
     def execute_once(self, knapsack):
 
+        self.worst_solution = 2
+        self.best_solution = 10
+
         print ("===> Genetic Algorithm Living")
+        print ("===> Best  solution: {", self.best_solution, "}")
+        print ("===> Worst  solution: {", self.worst_solution, "}")
+
         return knapsack
+
+    def has_finished(self):
+        return False

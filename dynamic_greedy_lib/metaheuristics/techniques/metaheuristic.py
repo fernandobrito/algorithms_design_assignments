@@ -14,6 +14,7 @@ class MetaHeuristic:
 
         self.iterations = 0
         self.best_solution = None
+        self.worst_solution = None
 
     # Should be overridden
     def execute_once(self, knapsack):
