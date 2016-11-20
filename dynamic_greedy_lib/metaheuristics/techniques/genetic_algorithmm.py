@@ -6,12 +6,18 @@ import random
 from metaheuristics.techniques.metaheuristic import MetaHeuristic
 
 class GeneticAlgorithm(MetaHeuristic):
-    def __init__(self, seed_data, constraint_limits, initial_similarity=0.5):
+    def __init__(self, seed_data,
+                 constraint_limits,
+                 initial_similarity_probability=0.5,
+                 crossover_probability=0.8,
+                 mutation_probability=0.5):
         super().__init__()
 
         self.seed_data = self.build_seed_data(seed_data)
         self.constraint_limits = constraint_limits
-        self.initial_similarity = initial_similarity
+        self.initial_similarity_probability = initial_similarity_probability
+        self.crossover_probability = crossover_probability
+        self.mutation_probability = mutation_probability
         self.knapsack = None
 
     def execute_once(self, knapsack):
@@ -25,7 +31,7 @@ class GeneticAlgorithm(MetaHeuristic):
         print ("===> Worst  solution: {", self.worst_solution, "}")
         # print ("inserted_items data: ", self.build_seed_data(self.knapsack.inserted_items))
         #
-        # if random.random() < self.initial_similarity:
+        # if random.random() < self.initial_similarity_probability:
         #     genes = self.create_individual_by_inheritance(self.seed_data)
         #     print ("#######create_individual_by_inheritance#######")
         #     print (genes)
@@ -81,3 +87,8 @@ class GeneticAlgorithm(MetaHeuristic):
         child_1 = parent_1[:index] + parent_2[index:]
         child_2 = parent_2[:index] + parent_1[index:]
         return child_1, child_2
+
+    def mutate(self, individual):
+        """Reverse the bit of a random index in an individual."""
+        mutate_index = random.randrange(len(individual))
+        individual[mutate_index] = (0, 1)[individual[mutate_index] == 0]
