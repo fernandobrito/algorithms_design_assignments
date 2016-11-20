@@ -31,24 +31,24 @@ class SimulatedAnnealing(MetaHeuristic):
         best_neighbour = self.get_best_from_random_neighbours(knapsack, number_neighbours)
 
         if best_neighbour is None:
-            print("====> No valid neighbour found")
+            self.DEBUG and print("====> No valid neighbour found")
             return knapsack
 
-        print("Selected best best_neighbour")
-        pprint(vars(best_neighbour))
+        self.DEBUG and print("Selected best best_neighbour")
+        self.DEBUG and pprint(vars(best_neighbour))
 
-        print("===> Probability :", self.__calculate_probability(knapsack, best_neighbour))
+        self.DEBUG and print("===> Probability :", self.__calculate_probability(knapsack, best_neighbour))
 
         chosen = None
 
         if best_neighbour.compare_with(knapsack) > 1:
             # If best neighbour is best than current backpack
             # choose it and freeze the temperature
-            print("====> Better solution. Freezing. Current temperature ", self.temperature)
+            self.DEBUG and print("====> Better solution. Freezing. Current temperature ", self.temperature)
             self.__freeze_temperature()
             chosen = best_neighbour
         else:
-            print("====> Worse solution")
+            self.DEBUG and print("====> Worse solution")
 
             # Else, there is a chance that we still choose
             # a worst solution
@@ -56,12 +56,12 @@ class SimulatedAnnealing(MetaHeuristic):
             calculated_probability = self.__calculate_probability(knapsack, best_neighbour)
 
             if calculated_probability >= calculated_random:
-                print("====> Chose worst. ", calculated_probability, " > ", calculated_random)
+                self.DEBUG and print("====> Chose worst. ", calculated_probability, " > ", calculated_random)
 
                 self.__heat_temperature()
                 chosen = best_neighbour
             else:
-                print("====> Stayed with best. ", calculated_probability, " < ", calculated_random)
+                self.DEBUG and print("====> Stayed with best. ", calculated_probability, " < ", calculated_random)
                 self.__freeze_temperature()
                 chosen = knapsack
 

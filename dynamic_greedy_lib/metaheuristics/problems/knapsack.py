@@ -23,7 +23,8 @@ class Knapsack:
 
     def __init__(self, constraints_limits, optimal_solution):
         """
-
+        Create an empty knapsack instance. Available items should be added
+         one by one using register_available_item().
 
         :param constraints_limits:
         :param optimal_solution:
@@ -120,7 +121,7 @@ class Knapsack:
         :return:
         """
 
-        return 1 - (self.total_profit / self.optimal_solution)
+        return 1 - round(self.total_profit, 1) / round(self.optimal_solution, 1)
 
 class Item:
     def __init__(self, constraints, profit):

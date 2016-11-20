@@ -4,9 +4,11 @@ import time
 from metaheuristics.problems.knapsack import Knapsack
 
 MAX_ITERATIONS = 20000
-MAX_TIME = 3 # in seconds
+MAX_TIME = 60 # in seconds
 
 class Agent:
+    DEBUG = False
+
     """
     Agent to run a single heuristic, once, on a single file.
     """
@@ -27,7 +29,7 @@ class Agent:
 
     def execute(self):
         for index in range(MAX_ITERATIONS):
-            print("\n\n=== Running ", index)
+            self.DEBUG and print("\n\n=== Running ", index)
 
             # Execute execute_once on heuristic and time it
             start_time = time.time()
@@ -46,14 +48,14 @@ class Agent:
 
             # From time
             if self.__has_timedout():
-                print("timed out!")
+                self.DEBUG and print("timed out!")
                 break
 
         self.__log()
 
     def __run_step(self):
-        print("Current")
-        pprint(vars(self.knapsack))
+        self.DEBUG and print("Current")
+        self.DEBUG and pprint(vars(self.knapsack))
         return self.heuristic.execute_once(self.knapsack)
 
     def __log(self):
