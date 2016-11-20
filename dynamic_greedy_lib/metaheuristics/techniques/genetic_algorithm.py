@@ -11,8 +11,9 @@ class GeneticAlgorithm(MetaHeuristic):
     def __init__(self,
                  seed_data,
                  constraint_limits,
-                 population_size=10,
-                 generations=6,
+                 MAX_ITERATIONS,
+                 population_size=8,
+                 generations=4,
                  initial_similarity_probability=0.9,
                  crossover_probability=0.8,
                  mutation_probability=0.5,
@@ -29,8 +30,10 @@ class GeneticAlgorithm(MetaHeuristic):
         self.mutation_probability = mutation_probability
         self.knapsack = None
         self.current_generation = []
-        self.tournament_size = population_size // 10
+        self.tournament_size = self.population_size // 10
         self.generations_counter = 0
+        self.fitness_evaluations = 0
+        self.max_fitness_evaluations = MAX_ITERATIONS * self.generations * self.population_size
         self.elitism = elitism
         self.maximise_fitness = maximise_fitness
 
@@ -55,16 +58,21 @@ class GeneticAlgorithm(MetaHeuristic):
 
         print ("===> Optimal solution: ", self.knapsack.optimal_solution)
         print ("===> Current solution: ", self.knapsack.total_profit)
-        print ("===> Distance from optimal solution(scale of 0 to 1): ", 1 - self.knapsack.total_profit/self.knapsack.optimal_solution)
+        print ("===> Current distance from optimal solution(scale of 0 to 1): ", 1 - self.knapsack.total_profit/self.knapsack.optimal_solution)
         print ("===> Population size: ", self.population_size)
         print ("===> Generations: ", self.generations_counter)
+        print ("===> Total of fitness evaluations : ", self.fitness_evaluations)
+        print ("\n===> Less distance from optimal solution(scale of 0 to 1): ", 1 - self.best_solution[0] / self.knapsack.optimal_solution)
         print ("===> Best  solution: { Profit: ", self.best_solution[0], ", Genes: ", self.best_solution[1], "}")
         print ("===> Worst solution: { Profit: ", self.worst_solution[0], ", Genes: ", self.worst_solution[1], "}")
 
         return self.knapsack
 
     def has_finished(self):
-        return False
+        if  self.fitness_evaluations < self.max_fitness_evaluations*0.6:
+            return False
+        else:
+            return True
 
     def build_seed_data(self, raw_data):
         """Create a items set in a list representation, where each item is a list and its respective
@@ -122,6 +130,7 @@ class GeneticAlgorithm(MetaHeuristic):
         return members[0]
 
     def genes_evaluate(self, individual, data):
+        self.fitness_evaluations += 1
         accumulator = [0] * len(data[0])
 
         for (selected, item) in zip(individual, data):

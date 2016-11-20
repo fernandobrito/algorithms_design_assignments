@@ -12,7 +12,7 @@ def runTest():
     pprint(vars(knapsack))
 
     heuristic = SimulatedAnnealing()
-    #heuristic = GeneticAlgorithm(knapsack.available_items, knapsack.constraint_limits)
+    #heuristic = GeneticAlgorithm(knapsack.available_items, knapsack.constraint_limits, MAX_ITERATIONS)
 
     # Fill the knapsack randomly
     knapsack = knapsack.randomize()
