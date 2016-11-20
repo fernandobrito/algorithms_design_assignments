@@ -16,7 +16,7 @@ class MetaHeuristic:
         self.best_solution = None
 
     # Should be overriden
-    def setup(self, knapsack):
+    def setup(self, knapsack, max_iterations):
         """
         It will be called once by the agent before running execute_once()
         Some heuristics may call randomize() here, or do some custom set up.

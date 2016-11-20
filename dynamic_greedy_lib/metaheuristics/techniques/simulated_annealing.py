@@ -20,7 +20,7 @@ class SimulatedAnnealing(MetaHeuristic):
 
         self.temperature_logger = Logger()
 
-    def setup(self, knapsack):
+    def setup(self, knapsack, max_iterations):
         return knapsack.randomize()
 
     def execute_once(self, knapsack):
