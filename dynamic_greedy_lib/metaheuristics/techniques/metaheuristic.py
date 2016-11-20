@@ -15,6 +15,17 @@ class MetaHeuristic:
         self.iterations = 0
         self.best_solution = None
 
+    # Should be overriden
+    def setup(self, knapsack):
+        """
+        It will be called once by the agent before running execute_once()
+        Some heuristics may call randomize() here, or do some custom set up.
+
+        :param knapsack: initial empty knapsack created by parser
+        :return: initial state
+        """
+        pass
+
     # Should be overridden
     def execute_once(self, knapsack):
         """
