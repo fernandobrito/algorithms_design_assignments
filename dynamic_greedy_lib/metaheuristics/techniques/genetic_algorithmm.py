@@ -6,7 +6,8 @@ import random
 from metaheuristics.techniques.metaheuristic import MetaHeuristic
 
 class GeneticAlgorithm(MetaHeuristic):
-    def __init__(self, seed_data,
+    def __init__(self,
+                 seed_data,
                  constraint_limits,
                  initial_similarity_probability=0.5,
                  crossover_probability=0.8,
@@ -50,7 +51,6 @@ class GeneticAlgorithm(MetaHeuristic):
     def build_seed_data(self, raw_data):
         """Create a items set in a list representation, where each item is a list and its respective
             profit is the last position.
-
         """
         seed_data = []
         for i in range(len(raw_data)):
@@ -61,9 +61,7 @@ class GeneticAlgorithm(MetaHeuristic):
         return seed_data
 
     def create_individual_by_inheritance(self, seed_data):
-        """Create a candidate solution representation using the genes from the last solution.
-
-        """
+        """Create a candidate solution representation using the genes from the last solution."""
         genes = [0] * len(seed_data)
 
         for item in self.build_seed_data(self.knapsack.inserted_items):
@@ -74,15 +72,11 @@ class GeneticAlgorithm(MetaHeuristic):
         return genes
 
     def create_individual_randomically(self, seed_data):
-        """Create a candidate solution representation using the genes created randomically.
-
-        """
+        """Create a candidate solution representation using the genes created randomically."""
         return [random.randint(0, 1) for _ in range(len(seed_data))]
 
     def crossover(self, parent_1, parent_2):
-        """Crossover (mate) two parents to produce two children.
-
-        """
+        """Crossover (mate) two parents to produce two children."""
         index = random.randrange(1, len(parent_1))
         child_1 = parent_1[:index] + parent_2[index:]
         child_2 = parent_2[:index] + parent_1[index:]
@@ -92,3 +86,7 @@ class GeneticAlgorithm(MetaHeuristic):
         """Reverse the bit of a random index in an individual."""
         mutate_index = random.randrange(len(individual))
         individual[mutate_index] = (0, 1)[individual[mutate_index] == 0]
+
+    def random_selection(self, population):
+        """Select and return a random member of the population."""
+        return random.choice(population)
