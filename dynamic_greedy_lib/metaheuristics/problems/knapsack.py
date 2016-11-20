@@ -121,7 +121,7 @@ class Knapsack:
         :return:
         """
 
-        return 1 - round(self.total_profit / self.optimal_solution, 3)
+        return 1 - round(self.total_profit, 1) / round(self.optimal_solution, 1)
 
 class Item:
     def __init__(self, constraints, profit):
