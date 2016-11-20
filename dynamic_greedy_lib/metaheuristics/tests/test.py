@@ -1,18 +1,26 @@
 from pprint import pprint
 
-from metaheuristics.tests.agent import Agent
+from metaheuristics.tests.agent import Agent, AgentLogger
 from metaheuristics.techniques.simulated_annealing import SimulatedAnnealing
 
+ITERATIONS_PER_FILE = 3
 
 def run_test():
-    file = open('mknap1_2.txt', 'r')
-    heuristic = SimulatedAnnealing()
+    AgentLogger.clear_log()
 
-    agent = Agent(heuristic, file)
-    agent.execute()
+    for index in range(ITERATIONS_PER_FILE):
+        filename = 'mknap1_2.txt'
+        file = open(filename, 'r')
 
-    print("Best solution:")
-    pprint(vars(agent.best_solution()))
+        logger = AgentLogger(filename, str(index))
+
+        heuristic = SimulatedAnnealing()
+
+        agent = Agent(heuristic, file, logger)
+        agent.execute()
+
+        print("Best solution:")
+        pprint(vars(agent.best_solution()))
 
 
 if __name__ == "__main__":

@@ -4,14 +4,14 @@ import time
 from metaheuristics.problems.knapsack import Knapsack
 
 MAX_ITERATIONS = 20000
-MAX_TIME = 60 # in seconds
+MAX_TIME = 3 # in seconds
 
 class Agent:
     """
     Agent to run a single heuristic, once, on a single file.
     """
 
-    def __init__(self, heuristic, file):
+    def __init__(self, heuristic, file, logger):
         # Store variables
         self.heuristic = heuristic
         self.knapsack = Knapsack.from_file(file)
@@ -23,7 +23,7 @@ class Agent:
         self.timer = 0
 
         # Logger
-        self.logger = Logger()
+        self.logger = logger
 
     def execute(self):
         for index in range(MAX_ITERATIONS):
@@ -31,15 +31,13 @@ class Agent:
 
             # Execute execute_once on heuristic and time it
             start_time = time.time()
-            self.__run_step()
+            self.knapsack = self.__run_step()
             end_time = time.time()
 
             # Print the time difference
             time_difference = end_time - start_time
             self.timer += time_difference
             print("====> Timer: ", self.timer)
-
-            self.__log()
 
             # Check stop conditions
             # From heuristic
@@ -51,13 +49,15 @@ class Agent:
                 print("timed out!")
                 break
 
+        self.__log()
+
     def __run_step(self):
         print("Current")
         pprint(vars(self.knapsack))
-        self.knapsack = self.heuristic.execute_once(self.knapsack)
+        return self.heuristic.execute_once(self.knapsack)
 
     def __log(self):
-        self.logger.log(self.heuristic.iterations, self.knapsack.rpd(), self.heuristic.temperature)
+        self.logger.log(self.heuristic.__class__.__name__, self.best_solution().rpd())
 
     def __has_timedout(self):
         return self.timer > MAX_TIME
@@ -67,10 +67,18 @@ class Agent:
 
 
 
-class Logger:
-    def __init__(self):
-        self.file = open('../output/output.txt', 'w')
-        self.file.write('iteration;rpd\n')
+class AgentLogger:
+    def __init__(self, filename, counter):
+        self.filename = filename
+        self.counter = counter
 
-    def log(self, iteration, rpd):
-        self.file.write("{0};{1};{2}\n".format(iteration, rpd))
+        self.file = open('../output/agents.txt', 'a')
+        self.file.write('counter;filename;heuristic;rpd\n')
+
+    @staticmethod
+    def clear_log():
+        file = open('../output/agents.txt', 'w')
+        file.truncate()
+
+    def log(self, heuristic, rpd):
+        self.file.write("{0};{1};{2};{3}\n".format(self.counter, self.filename, heuristic, rpd))
