@@ -62,15 +62,15 @@ class GeneticAlgorithm(MetaHeuristic):
 
         self.set_global_individuals(self.best_individual())
 
-        print ("===> Optimal solution: ", self.knapsack.optimal_solution)
-        print ("===> Current solution: ", self.knapsack.total_profit)
-        print ("===> Current distance from optimal solution(scale of 0 to 1): ", 1 - self.knapsack.total_profit/self.knapsack.optimal_solution)
-        print ("===> Population size: ", self.population_size)
-        print ("===> Generations: ", self.generations_counter)
-        print ("===> Total of fitness evaluations : ", self.fitness_evaluations)
-        print ("\n===> Less distance from optimal solution(scale of 0 to 1): ", 1 - self.best_solution.total_profit / self.knapsack.optimal_solution)
-        print ("===> Best  solution: { Profit: ", self.best_solution.total_profit, ", Genes:", self.best_genes, "}")
-        print ("===> Worst solution: { Profit: ", self.worst_solution.total_profit, ", Genes:", self.worst_genes, "}")
+        self.DEBUG and print("===> Optimal solution: ", self.knapsack.optimal_solution)
+        self.DEBUG and print("===> Current solution: ", self.knapsack.total_profit)
+        self.DEBUG and print("===> Current distance from optimal solution(scale of 0 to 1): ", 1 - self.knapsack.total_profit/self.knapsack.optimal_solution)
+        self.DEBUG and print("===> Population size: ", self.population_size)
+        self.DEBUG and print("===> Generations: ", self.generations_counter)
+        self.DEBUG and print("===> Total of fitness evaluations : ", self.fitness_evaluations)
+        self.DEBUG and print("\n===> Less distance from optimal solution(scale of 0 to 1): ", 1 - self.best_solution.total_profit / self.knapsack.optimal_solution)
+        self.DEBUG and print("===> Best  solution: { Profit: ", self.best_solution.total_profit, ", Genes:", self.best_genes, "}")
+        self.DEBUG and print("===> Worst solution: { Profit: ", self.worst_solution.total_profit, ", Genes:", self.worst_genes, "}")
 
         return self.knapsack
 

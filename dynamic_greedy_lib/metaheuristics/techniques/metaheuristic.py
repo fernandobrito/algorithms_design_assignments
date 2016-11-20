@@ -3,6 +3,8 @@ import random
 
 
 class MetaHeuristic:
+    DEBUG = False
+
     """
     Base meta-heuristic class to be extended by each specific technique.
     """
