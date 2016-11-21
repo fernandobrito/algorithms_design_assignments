@@ -9,7 +9,7 @@ from metaheuristics.techniques.large_neighborhood_search import LargeNeighborhoo
 HEURISTIC_CLASSES = [SimulatedAnnealing, GeneticAlgorithm, LargeNeighborhoodSearch]
 INPUT_FILES = ['mknap1_1.txt', 'mknap1_2.txt', 'mknap1_3.txt',
                'mknap1_4.txt', 'mknap1_5.txt', 'mknap1_6.txt', 'mknap1_7.txt']
-ITERATIONS_PER_FILE = 1
+ITERATIONS_PER_FILE = 7
 
 
 def run_test():
