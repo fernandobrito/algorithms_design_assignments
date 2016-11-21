@@ -20,4 +20,4 @@ Make sure you run the command from within the same folder as it is located.
 |:-------------:	            |:----------------:	        |:--------:	|
 | Simulated Annealing (SA)      | simulated_annealing.py    |  Fernando |
 | Genetic Algorithms (GA)       | genetic_algorithm.py   	|  Jaelson 	|
-|        	                    |                           |  Jorismar |
+| Iterated greedy (IG)          | large_neighborhood_search.py |  Jorismar |
