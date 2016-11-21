@@ -28,13 +28,14 @@ class SimulatedAnnealing(MetaHeuristic):
 
         self.temperature_logger = Logger()
 
-    def setup(self, knapsack):
+    def setup(self, knapsack, max_iterations):
         """
         Set up initial knapsack by randomizing the given empty one.
 
         :param knapsack: knapsack from parser
         :return: randomized knapsack
         """
+
         return knapsack.randomize()
 
     def execute_once(self, knapsack):

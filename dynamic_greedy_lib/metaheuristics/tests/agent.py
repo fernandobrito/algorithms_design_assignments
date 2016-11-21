@@ -20,7 +20,7 @@ class Agent:
         self.knapsack = Knapsack.from_file(file)
 
         # Initial state of knapsack
-        self.knapsack = self.heuristic.setup(self.knapsack)
+        self.knapsack = self.heuristic.setup(self.knapsack, MAX_ITERATIONS)
 
         # Timer
         self.timer = 0

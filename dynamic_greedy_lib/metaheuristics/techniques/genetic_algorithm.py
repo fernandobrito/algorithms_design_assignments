@@ -10,7 +10,6 @@ from metaheuristics.techniques.metaheuristic import MetaHeuristic
 
 class GeneticAlgorithm(MetaHeuristic):
     def __init__(self,
-                 MAX_ITERATIONS = 20000,
                  population_size=8,
                  generations=4,
                  initial_similarity_probability=0.9,
@@ -33,15 +32,17 @@ class GeneticAlgorithm(MetaHeuristic):
         self.tournament_size = self.population_size // 10
         self.generations_counter = 0
         self.fitness_evaluations = 0
-        self.max_fitness_evaluations = MAX_ITERATIONS * self.generations * self.population_size
+        self.max_fitness_evaluations = None
         self.elitism = elitism
         self.maximise_fitness = maximise_fitness
         self.best_genes = []
         self.worst_genes = []
 
-    def setup(self, knapsack):
+    def setup(self, knapsack, max_iterations):
         self.constraint_limits = knapsack.constraint_limits
         self.seed_data = self.build_seed_data(knapsack.available_items)
+        self.max_fitness_evaluations = max_iterations * self.generations * self.population_size
+
         return knapsack.randomize()
 
     def execute_once(self, knapsack):
