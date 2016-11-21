@@ -4,7 +4,7 @@ import time
 from metaheuristics.problems.knapsack import Knapsack
 
 MAX_ITERATIONS = 20000
-MAX_TIME = 10  # in seconds
+MAX_TIME = 1  # in seconds
 
 
 class Agent:
