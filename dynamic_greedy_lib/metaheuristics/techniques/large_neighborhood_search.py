@@ -6,14 +6,33 @@ from metaheuristics.techniques.metaheuristic import MetaHeuristic
 
 class LargeNeighborhoodSearch(MetaHeuristic):
     def __init__(self):
+        """
+        Constructor.
+        """
+
         super().__init__()
 
     def setup(self, knapsack, max_iterations):
+        """
+        Setup the class.
+
+        :param knapsack: a empty knapsack.
+        :param max_iterations: Max number of iteractions
+        :return: the best knapsack founded.
+        """
+
         self.num_iteractions = max_iterations
-        self.destr_factor = 15 #34  # Destruction facotr (%)
+        self.destr_factor = 15 # Destruction facotr (%)
         return knapsack.randomize()
 
     def execute_once(self, knapsack):
+        """
+        Run the LNS Heuristic.
+
+        :param knapsack: knapsack solution.
+        :return: the best knapsack founded.
+        """
+
         best = knapsack
         current = knapsack
         
@@ -21,10 +40,9 @@ class LargeNeighborhoodSearch(MetaHeuristic):
             if best.optimal_solution == best.total_profit or i >= self.num_iteractions:
                 break
 
-            temp = copy.copy(current)
+            temp = copy.deepcopy(current)
 
-            temp = self.destructor(temp)
-            temp = self.repair(temp)
+            temp = self.repair(self.destructor(temp))
 
             if self.accept(temp, current):
                 current = temp
@@ -38,6 +56,13 @@ class LargeNeighborhoodSearch(MetaHeuristic):
         return best
 
     def repair(self, knapsack):
+        """
+        Repairs a destroyed solution.
+
+        :param knapsack: knapsack solution.
+        :return: knapsack repaired.
+        """
+
         pos = 0
 
         while True:
@@ -65,6 +90,13 @@ class LargeNeighborhoodSearch(MetaHeuristic):
         return knapsack
 
     def destructor(self, knapsack):
+        """
+        Destroys part of the solution of the knapsack.
+
+        :param knapsack: knapsack solution.
+        :return: knapsack destroyed.
+        """
+
         num_rm = int((len(knapsack.inserted_items) * self.destr_factor) / 100)
         if num_rm < 1:
             num_rm = 1        
@@ -78,6 +110,14 @@ class LargeNeighborhoodSearch(MetaHeuristic):
         return knapsack
 
     def accept(self, knapsack1, knapsack2):
+        """
+        Valid if the first solution is better than the second.
+
+        :param knapsack1: knapsack solution.
+        :param knapsack2: knapsack solution.
+        :return: True if knapsack 1 is better than the knapsack 2 and False if not.
+        """
+
         v1 = self.c(knapsack1)
         v2 = self.c(knapsack2)
 
@@ -96,4 +136,10 @@ class LargeNeighborhoodSearch(MetaHeuristic):
 
     # Get profit of the knapsack
     def c(self, knapsack):
+        """
+        Get profit of this solution..
+
+        :param knapsack: knapsack solution.
+        :return: knapsack profit.
+        """
         return knapsack.total_profit
