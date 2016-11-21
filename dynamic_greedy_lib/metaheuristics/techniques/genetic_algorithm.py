@@ -7,6 +7,7 @@ from operator import attrgetter
 
 from metaheuristics.techniques.metaheuristic import MetaHeuristic
 
+
 class GeneticAlgorithm(MetaHeuristic):
     def __init__(self,
                  population_size=8,
@@ -76,7 +77,7 @@ class GeneticAlgorithm(MetaHeuristic):
         return self.knapsack
 
     def has_finished(self):
-        if  self.fitness_evaluations < self.max_fitness_evaluations*0.6:
+        if self.fitness_evaluations < self.max_fitness_evaluations*0.6:
             return False
         else:
             return True
@@ -166,7 +167,6 @@ class GeneticAlgorithm(MetaHeuristic):
 
         self.current_generation = initial_population
 
-
     def calculate_population_fitness(self):
         """Calculate the fitness of every member of the given population using the genes_evaluate."""
         for individual in self.current_generation:
@@ -245,7 +245,7 @@ class GeneticAlgorithm(MetaHeuristic):
         """Return the individual with the best fitness in the current generation.
         """
         best = self.current_generation[0]
-        return (best.fitness, best.genes)
+        return best.fitness, best.genes
 
     def set_global_individuals(self, best_individual):
         if self.iterations == 1:
@@ -258,6 +258,7 @@ class GeneticAlgorithm(MetaHeuristic):
         elif best_individual[0] > self.best_solution.total_profit:
                 self.best_genes = best_individual[1]
                 self.best_solution = self.knapsack
+
 
 class Chromosome(object):
     """ Chromosome class that encapsulates an individual's fitness and solution

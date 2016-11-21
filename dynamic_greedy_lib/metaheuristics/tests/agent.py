@@ -4,7 +4,8 @@ import time
 from metaheuristics.problems.knapsack import Knapsack
 
 MAX_ITERATIONS = 20000
-MAX_TIME = 60 # in seconds
+MAX_TIME = 10  # in seconds
+
 
 class Agent:
     DEBUG = False
@@ -66,7 +67,6 @@ class Agent:
 
     def best_solution(self):
         return self.heuristic.best_solution
-
 
 
 class AgentLogger:

@@ -1,13 +1,34 @@
 from utils.string import split_to_float
 
+
 class KnapsackParser:
+    """
+    Parse input file following format describer in:
+    http://people.brunel.ac.uk/~mastjjb/jeb/orlib/mknapinfo.html
+
+    Accepts only 1 instance per file.
+    """
+
     @staticmethod
     def parse(file):
+        """
+        Parse 'file' and converts it to a knapsack instance.
+
+        :param file: file object
+        :return: knapsack instance, with empty inserted items and
+        all items on available set
+        """
         # Parse values and create object
         return KnapsackParser.create_object(*KnapsackParser.parse_file(file))
 
     @staticmethod
     def parse_file(file):
+        """
+        Parse 'file' and returns raw data. Used internally.
+
+        :param file: file object
+        :return: optimal_solution, profits, constraints_limits, constraints_list
+        """
         # Parse first line
         header = file.readline()
         amount_items, amount_constraints, optimal_solution = split_to_float(header)
@@ -40,7 +61,15 @@ class KnapsackParser:
 
     @staticmethod
     def create_object(optimal_solution, profits, constraints_limits, constraints_list):
+        """
+        Take raw data from parse_file() and create knapsack instance. Used internally.
 
+        :param optimal_solution: number
+        :param profits: list of numbers
+        :param constraints_limits: list of numbers
+        :param constraints_list: list of lists
+        :return:
+        """
         # Build the main object
         knapsack = Knapsack(constraints_limits, optimal_solution)
 
