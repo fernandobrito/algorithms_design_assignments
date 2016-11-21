@@ -3,9 +3,10 @@ from pprint import pprint
 from metaheuristics.tests.agent import Agent, AgentLogger
 from metaheuristics.techniques.simulated_annealing import SimulatedAnnealing
 from metaheuristics.techniques.genetic_algorithm import GeneticAlgorithm
+from metaheuristics.techniques.large_neighborhood_search import LargeNeighborhoodSearch
 
 # Parameters for the experiment
-HEURISTIC_CLASSES = [SimulatedAnnealing, GeneticAlgorithm]
+HEURISTIC_CLASSES = [SimulatedAnnealing, GeneticAlgorithm, LargeNeighborhoodSearch]
 INPUT_FILES = ['mknap1_1.txt', 'mknap1_2.txt', 'mknap1_3.txt',
                'mknap1_4.txt', 'mknap1_5.txt', 'mknap1_6.txt', 'mknap1_7.txt']
 ITERATIONS_PER_FILE = 7

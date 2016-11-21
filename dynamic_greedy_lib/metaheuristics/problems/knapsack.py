@@ -31,6 +31,8 @@ class Knapsack:
         self.constraint_limits = constraints_limits
         self.optimal_solution = optimal_solution
 
+        self.constraints_level = [0.0] * len(constraints_limits)
+
         self.available_items = []
         self.inserted_items = []
 
@@ -73,6 +75,8 @@ class Knapsack:
         """
         self.inserted_items.append(item)
         self.total_profit += item.profit
+        for i in range(len(item.constraints)):
+            self.constraints_level[i] += item.constraints[i]
 
     def pop_random_available_item(self):
         """
@@ -94,6 +98,8 @@ class Knapsack:
 
         item = self.inserted_items.pop(random.randrange(len(self.inserted_items)))
         self.total_profit -= item.profit
+        for i in range(len(item.constraints)):
+            self.constraints_level[i] -= item.constraints[i]
 
         return item
 
