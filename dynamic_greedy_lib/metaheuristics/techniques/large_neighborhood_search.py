@@ -1,7 +1,7 @@
 import random
 import copy
 from operator import add
-
+from metaheuristics.problems.knapsack import Knapsack
 from metaheuristics.techniques.metaheuristic import MetaHeuristic
 
 class LargeNeighborhoodSearch(MetaHeuristic):
@@ -40,7 +40,7 @@ class LargeNeighborhoodSearch(MetaHeuristic):
             if best.optimal_solution == best.total_profit or i >= self.num_iteractions:
                 break
 
-            temp = copy.deepcopy(current)
+            temp = self.clone(current) #copy.deepcopy(current)
 
             temp = self.repair(self.destructor(temp))
 
@@ -143,3 +143,23 @@ class LargeNeighborhoodSearch(MetaHeuristic):
         :return: knapsack profit.
         """
         return knapsack.total_profit
+
+    def clone(self, knapsack):
+        """
+        Clone knapsack
+
+        :param knapsack: knapsack origin.
+        :return: knapsack copy.
+        """
+
+        constraints_limits = knapsack.constraint_limits[:]
+            
+        constraints_limits
+        new_knapsack = Knapsack(constraints_limits, knapsack.optimal_solution)
+        new_knapsack.constraints_level = knapsack.constraints_level[:]
+        new_knapsack.available_items = knapsack.available_items[:]
+        new_knapsack.inserted_items = knapsack.inserted_items[:]
+        new_knapsack.total_profit = knapsack.total_profit
+
+        return new_knapsack
+        
