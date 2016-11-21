@@ -51,16 +51,7 @@ class GeneticAlgorithm(MetaHeuristic):
 
         self.run()
 
-        self.knapsack.total_profit = self.best_individual()[0]
-
-        self.knapsack.available_items = []
-        self.knapsack.inserted_items = []
-
-        for (selected, item) in zip(self.best_individual()[1], self.seed_data):
-            if selected:
-                self.knapsack.inserted_items.append(item)
-            else:
-                self.knapsack.available_items.append(item)
+        self.update_knapsack(self.best_individual())
 
         self.set_global_individuals(self.best_individual())
 
@@ -81,6 +72,18 @@ class GeneticAlgorithm(MetaHeuristic):
             return False
         else:
             return True
+
+    def update_knapsack(self, individual):
+        self.knapsack.total_profit = individual[0]
+
+        self.knapsack.available_items = []
+        self.knapsack.inserted_items = []
+
+        for (selected, item) in zip(individual[1], self.seed_data):
+            if selected:
+                self.knapsack.inserted_items.append(item)
+            else:
+                self.knapsack.available_items.append(item)
 
     def build_seed_data(self, raw_data):
         """Create a items set in a list representation, where each item is a list and its respective
