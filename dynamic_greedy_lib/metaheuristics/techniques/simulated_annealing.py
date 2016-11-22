@@ -128,7 +128,7 @@ class SimulatedAnnealing(MetaHeuristic):
 
 class Logger:
     def __init__(self):
-        self.file = open('../output/output.txt', 'w')
+        self.file = open('../output/sa_output.txt', 'w')
         self.file.write('iteration;rpd;temperature;probability\n')
 
     def log(self, iteration, rpd, temperature, probability):

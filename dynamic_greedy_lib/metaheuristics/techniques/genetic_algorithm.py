@@ -37,6 +37,7 @@ class GeneticAlgorithm(MetaHeuristic):
         self.maximise_fitness = maximise_fitness
         self.best_genes = []
         self.worst_genes = []
+        self.genes_evaluations_logger = Logger()
 
     def setup(self, knapsack, max_iterations):
         self.constraint_limits = knapsack.constraint_limits
@@ -54,6 +55,8 @@ class GeneticAlgorithm(MetaHeuristic):
         self.update_knapsack(self.best_individual())
 
         self.set_global_individuals(self.best_individual())
+
+        self.genes_evaluations_logger.log(self.iterations, self.knapsack.rpd(), self.fitness_evaluations, self.max_fitness_evaluations)
 
         self.DEBUG and print("\n===> Optimal solution: ", self.knapsack.optimal_solution)
         self.DEBUG and print("===> Current solution: ", self.knapsack.total_profit)
@@ -276,3 +279,14 @@ class Chromosome(object):
         """Return initialised Chromosome representation in human readable form.
         """
         return repr((self.fitness, self.genes))
+
+
+class Logger:
+    def __init__(self):
+        self.file = open('../output/ga_output.txt', 'w')
+        self.file.write('iteration;rpd;genes_evaluations\n')
+
+    def log(self, iteration, rpd, genes_evaluations, max_genes_evaluations):
+        current_distance_from_max_genes_evaluations_scale_0_1 = (float(genes_evaluations) / float(max_genes_evaluations))
+        self.file.write("{0};{1};{2}\n".format(iteration, rpd, current_distance_from_max_genes_evaluations_scale_0_1))
+
