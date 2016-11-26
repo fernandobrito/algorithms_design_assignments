@@ -22,7 +22,7 @@ class LargeNeighborhoodSearch(MetaHeuristic):
         """
 
         self.num_iteractions = max_iterations
-        self.destr_factor = 15 # Destruction facotr (%)
+        self.destr_factor = 33 # Destruction facotr (%)
         return knapsack.randomize()
 
     def execute_once(self, knapsack):
@@ -68,7 +68,7 @@ class LargeNeighborhoodSearch(MetaHeuristic):
         while True:
             high = -1
 
-            for i in range(pos, len(knapsack.available_items)):
+            for i in range(len(knapsack.available_items)):
                 if knapsack.available_items[i].profit > high:
                     fits = True
 
@@ -81,7 +81,7 @@ class LargeNeighborhoodSearch(MetaHeuristic):
                         high = knapsack.available_items[i].profit
                         pos = i
 
-            if high > 0:
+            if high >= 0:
                 knapsack.insert_item(knapsack.available_items.pop(pos))
                 pos += 1
             else:
@@ -98,8 +98,11 @@ class LargeNeighborhoodSearch(MetaHeuristic):
         """
 
         num_rm = int((len(knapsack.inserted_items) * self.destr_factor) / 100)
-        if num_rm < 1:
-            num_rm = 1        
+        
+        num_rm = round(num_rm)
+
+        #if num_rm < 2:
+            #num_rm = 1        
 
         for i in range(num_rm):
             if not knapsack.has_inserted_items():
